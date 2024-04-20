@@ -32,6 +32,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             var settings = new Models.Settings();
             settings.Setting1 = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Setting1", false);
             settings.Setting2 = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Setting2", System.DateTime.Now);
+            settings.ItemID1 = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_ItemID1", "teszt");
 
             return View(settings);
         }
@@ -48,6 +49,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
         {
             ModuleContext.Configuration.ModuleSettings["DNN.YounglingSlayer.WokPicker_Setting1"] = settings.Setting1.ToString();
             ModuleContext.Configuration.ModuleSettings["DNN.YounglingSlayer.WokPicker_Setting2"] = settings.Setting2.ToUniversalTime().ToString("u");
+            ModuleContext.Configuration.ModuleSettings["DNN.YounglingSlayer.WokPicker_ItemID1"] = settings.ItemID1.ToString();
 
             return RedirectToDefaultRoute();
         }
