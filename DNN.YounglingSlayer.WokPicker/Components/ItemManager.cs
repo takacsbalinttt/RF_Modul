@@ -15,6 +15,7 @@ using DotNetNuke.Data;
 using DotNetNuke.Framework;
 using System.Collections.Generic;
 
+
 namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Components
 {
     internal interface IItemManager
@@ -61,6 +62,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Components
                 var rep = ctx.GetRepository<Item>();
                 t = rep.Get(moduleId);
             }
+            System.Diagnostics.Debugger.Launch();
             return t;
         }
 
