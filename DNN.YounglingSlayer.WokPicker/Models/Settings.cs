@@ -18,6 +18,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
 {
     public class Settings
     {
+        public string ItemID1 { get; set; }
         public bool Setting1 { get; set; }
         public DateTime Setting2 { get; set; }
     }
