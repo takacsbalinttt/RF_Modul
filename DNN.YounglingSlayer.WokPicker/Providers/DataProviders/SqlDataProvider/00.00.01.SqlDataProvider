@@ -8,11 +8,11 @@
 /*****                                                  *****/
 /************************************************************/
 
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}DNN.YounglingSlayer.WokPicker_Items]') AND type in (N'U'))
-DROP TABLE {databaseOwner}[{objectQualifier}DNN.YounglingSlayer.WokPicker_Items]
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}WokPicker_Items]') AND type in (N'U'))
+DROP TABLE {databaseOwner}[{objectQualifier}WokPicker_Items]
 GO
 
-CREATE TABLE {databaseOwner}{objectQualifier}DNN.YounglingSlayer.WokPicker_Items
+CREATE TABLE {databaseOwner}{objectQualifier}WokPicker_Items
     (
     ItemId int NOT NULL IDENTITY (1, 1),
     ItemName nvarchar(MAX) NOT NULL,
@@ -28,8 +28,8 @@ CREATE TABLE {databaseOwner}{objectQualifier}DNN.YounglingSlayer.WokPicker_Items
 GO
 
 
-ALTER TABLE {databaseOwner}{objectQualifier}DNN.YounglingSlayer.WokPicker_Items ADD CONSTRAINT
-    PK_{objectQualifier}DNN.YounglingSlayer.WokPicker_Items PRIMARY KEY CLUSTERED 
+ALTER TABLE {databaseOwner}{objectQualifier}WokPicker_Items ADD CONSTRAINT
+    PK_{objectQualifier}WokPicker_Items PRIMARY KEY CLUSTERED 
     (
     ItemId
     ) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
