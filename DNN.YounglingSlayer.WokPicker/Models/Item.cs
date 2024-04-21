@@ -35,6 +35,12 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
         ///</summary>
         public string ItemName { get; set; }
 
+        /// <summary>
+        /// HotCakesID
+        /// </summary>
+
+        public string ItemHCID { get; set; }    
+
 
         ///<summary>
         /// The ModuleId of where the object was created and gets displayed
@@ -44,7 +50,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
         /// <summary>
         /// Is the item available for purchase
         /// </summary>
-        public int OnStock { get; set; }    
+        public bool OnStock { get; set; }    
 
 
         /// <summary>
