@@ -30,7 +30,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
         public ActionResult Settings()
         {
             var settings = new Models.Settings();
-            settings.Setting1 = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Setting1", false);
+            settings.MultiSelect = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_MultiSelect", true);
             settings.Setting2 = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Setting2", System.DateTime.Now);
             settings.ItemID1 = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_ItemID1", "teszt");
             settings.ItemName1 = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_ItemName1", "Név1");
@@ -49,7 +49,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
         [DotNetNuke.Web.Mvc.Framework.ActionFilters.ValidateAntiForgeryToken]
         public ActionResult Settings(Models.Settings settings)
         {
-            ModuleContext.Configuration.ModuleSettings["DNN.YounglingSlayer.WokPicker_Setting1"] = settings.Setting1.ToString();
+            ModuleContext.Configuration.ModuleSettings["DNN.YounglingSlayer.WokPicker_MultiSelect"] = settings.MultiSelect.ToString();
             ModuleContext.Configuration.ModuleSettings["DNN.YounglingSlayer.WokPicker_Setting2"] = settings.Setting2.ToUniversalTime().ToString("u");
             ModuleContext.Configuration.ModuleSettings["DNN.YounglingSlayer.WokPicker_ItemID1"] = settings.ItemID1.ToString();
             ModuleContext.Configuration.ModuleSettings["DNN.YounglingSlayer.WokPicker_ItemName1"] = settings.ItemName1.ToString();
