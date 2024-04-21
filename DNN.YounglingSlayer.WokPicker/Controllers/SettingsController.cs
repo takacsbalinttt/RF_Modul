@@ -33,6 +33,8 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             settings.Setting1 = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Setting1", false);
             settings.Setting2 = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Setting2", System.DateTime.Now);
             settings.ItemID1 = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_ItemID1", "teszt");
+            settings.ItemName1 = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_ItemName1", "Név1");
+            settings.ItemImagePath1 = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_ItemImagePath1", "Kép útvonala");
 
             return View(settings);
         }
@@ -50,6 +52,8 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             ModuleContext.Configuration.ModuleSettings["DNN.YounglingSlayer.WokPicker_Setting1"] = settings.Setting1.ToString();
             ModuleContext.Configuration.ModuleSettings["DNN.YounglingSlayer.WokPicker_Setting2"] = settings.Setting2.ToUniversalTime().ToString("u");
             ModuleContext.Configuration.ModuleSettings["DNN.YounglingSlayer.WokPicker_ItemID1"] = settings.ItemID1.ToString();
+            ModuleContext.Configuration.ModuleSettings["DNN.YounglingSlayer.WokPicker_ItemName1"] = settings.ItemName1.ToString();
+            ModuleContext.Configuration.ModuleSettings["DNN.YounglingSlayer.WokPicker_ItemImagePath1"] = settings.ItemImagePath1.ToString();
 
             return RedirectToDefaultRoute();
         }

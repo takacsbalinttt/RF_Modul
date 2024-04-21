@@ -18,8 +18,18 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
 {
     public class Settings
     {
-        public string ItemID1 { get; set; }
         public bool Setting1 { get; set; }
         public DateTime Setting2 { get; set; }
+        public string ItemID1 { get; set; }
+        public string ItemName1 { get; set;}
+        public string ItemImagePath1 { get; set; }
+
+        public string ItemID2 { get; set;}
+        public string ItemName2 { get; set;}   
+        public string ItemImagePath2 { get; set; }  
+
+        public string ItemID3 { get; set;}
+        public string ItemName3 { get; set;}   
+        public string ItemImagePath3 { get;set;}
     }
 }
