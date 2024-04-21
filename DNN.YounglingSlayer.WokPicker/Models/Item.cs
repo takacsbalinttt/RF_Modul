@@ -10,10 +10,9 @@
 ' 
 */
 
-using DotNetNuke.Common.Utilities;
 using DotNetNuke.ComponentModel.DataAnnotations;
-using DotNetNuke.Entities.Content;
 using System;
+using System.Security.Cryptography.X509Certificates;
 using System.Web.Caching;
 
 namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
@@ -36,39 +35,23 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
         ///</summary>
         public string ItemName { get; set; }
 
-        ///<summary>
-        /// A string with the description of the object
-        ///</summary>
-        public string ItemDescription { get; set; }
-
-        ///<summary>
-        /// An integer with the user id of the assigned user for the object
-        ///</summary>
-        public int AssignedUserId { get; set; }
 
         ///<summary>
         /// The ModuleId of where the object was created and gets displayed
         ///</summary>
         public int ModuleId { get; set; }
 
-        ///<summary>
-        /// An integer for the user id of the user who created the object
-        ///</summary>
-        public int CreatedByUserId { get; set; } = -1;
+        /// <summary>
+        /// Is the item available for purchase
+        /// </summary>
+        public int OnStock { get; set; }    
 
-        ///<summary>
-        /// An integer for the user id of the user who last updated the object
-        ///</summary>
-        public int LastModifiedByUserId { get; set; } = -1;
 
-        ///<summary>
-        /// The date the object was created
-        ///</summary>
-        public DateTime CreatedOnDate { get; set; } = DateTime.UtcNow;
+        /// <summary>
+        /// The name of the image file
+        /// </summary>
+        public string ImageName { get; set; }
 
-        ///<summary>
-        /// The date the object was updated
-        ///</summary>
-        public DateTime LastModifiedOnDate { get; set; } = DateTime.UtcNow;
+
     }
 }
