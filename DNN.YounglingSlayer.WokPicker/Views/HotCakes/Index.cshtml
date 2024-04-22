@@ -4,6 +4,17 @@
 @using DotNetNuke.Web.Mvc.Helpers
 @using System.Linq
 
+@{string selectedBvin = "7A4FBF68-582F-4F4C-BF75-6DCE95F2D5A1";
+
+   selectedBvin = selectedBvin.ToLower();
+ }
+@{
+    var item = Model.SingleOrDefault(x => x.bvin.Equals(selectedBvin));
+
+
+
+}
+
 
 <div id="Items-@Dnn.ModuleContext.ModuleId">
     @if (Model == null)
@@ -12,16 +23,40 @@
     }
     else
     {   /*
-        <ul class="tm_tl">
-            
-            @foreach (var product in Model)
-            {
-                <li class="tm_t">
-                    <h3>@product.bvin</h3>
-                </li>
-            }
-        </ul>*/
+    <ul class="tm_tl">
+
+        @foreach (var product in Model)
+        {
+            <li class="tm_t">
+                <h3>@product.bvin</h3>
+            </li>
+        }
+    </ul>*/
         <h2>HotCakes elemek sikeresen beolvasva!</h2>
+        <h3>
+            Választott bvin: @selectedBvin
+        </h3>
+     
+        if (item == null)
+        {
+            <p>no cucc sry</p>
+        }
+        else
+        {
+            <p>
+                @item.bvin
+                <br>
+                @item.SKU
+                <br>
+                @item.ImageFileSmall
+                <br>
+                Raktáron: @item.OutOfStockMode
+            </p>
+    
+        }
+
+
+
 
 
     }
