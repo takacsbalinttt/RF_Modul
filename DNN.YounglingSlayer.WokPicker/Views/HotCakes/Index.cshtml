@@ -11,36 +11,18 @@
         <p>@Dnn.LocalizeString("NoItems")</p>
     }
     else
-    {
+    {   /*
         <ul class="tm_tl">
+            
             @foreach (var product in Model)
             {
                 <li class="tm_t">
                     <h3>@product.bvin</h3>
                 </li>
             }
-        </ul>
+        </ul>*/
+        <h2>HotCakes elemek sikeresen beolvasva!</h2>
 
 
-
-    /*
-    <ul class="tm_tl">
-        @foreach (var item in Model)
-        {
-            <li class="tm_t">
-                <h3>@item.ItemName</h3>
-                <div class="tm_td"></div>
-                @{
-                    if (Dnn.ModuleContext.IsEditable)
-                    {
-                        <div>
-                            <a href="@Url.Action("Edit", "Item", new {ctl = "Edit", itemId = item.ItemId})">@Dnn.LocalizeString("EditItem")</a>
-                            <a href="@Url.Action("Delete", "Item", new {itemId = item.ItemId})">@Dnn.LocalizeString("DeleteItem")</a>
-                        </div>
-                    }
-                }
-            </li>
-        }
-    </ul>*/
     }
 </div>

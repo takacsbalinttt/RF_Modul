@@ -27,7 +27,6 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Components
                 products = rep.Get();
             }
             
-            System.Diagnostics.Debugger.Launch();
             return products;
         }
         /*
