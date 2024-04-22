@@ -52,7 +52,7 @@
                 <moduleControls>
                   <moduleControl>
                     <controlKey />
-                    <controlSrc>DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers/Item/Index.mvc</controlSrc>
+                    <controlSrc>DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers/HotCakes/Index.mvc</controlSrc>
                     <supportsPartialRendering>False</supportsPartialRendering>
                     <controlTitle />
                     <controlType>View</controlType>

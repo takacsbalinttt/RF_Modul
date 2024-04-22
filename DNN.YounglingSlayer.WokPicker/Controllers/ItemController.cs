@@ -17,6 +17,7 @@ using DotNetNuke.Framework.JavaScriptLibraries;
 using DotNetNuke.Web.Mvc.Framework.ActionFilters;
 using DotNetNuke.Web.Mvc.Framework.Controllers;
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -55,21 +56,14 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
         {
             if (item.ItemId == -1)
             {
-                item.CreatedByUserId = User.UserID;
-                item.CreatedOnDate = DateTime.UtcNow;
-                item.LastModifiedByUserId = User.UserID;
-                item.LastModifiedOnDate = DateTime.UtcNow;
 
                 ItemManager.Instance.CreateItem(item);
             }
             else
             {
                 var existingItem = ItemManager.Instance.GetItem(item.ItemId, item.ModuleId);
-                existingItem.LastModifiedByUserId = User.UserID;
-                existingItem.LastModifiedOnDate = DateTime.UtcNow;
+ 
                 existingItem.ItemName = item.ItemName;
-                existingItem.ItemDescription = item.ItemDescription;
-                existingItem.AssignedUserId = item.AssignedUserId;
 
                 ItemManager.Instance.UpdateItem(existingItem);
             }

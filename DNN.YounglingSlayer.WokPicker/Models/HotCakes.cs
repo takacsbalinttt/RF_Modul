@@ -17,46 +17,39 @@ using System.Web.Caching;
 
 namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
 {
-    [TableName("WokPicker_Items")]
+    [TableName("hcc_Product")]
     //setup the primary key for table
-    [PrimaryKey("ItemId", AutoIncrement = true)]
+    [PrimaryKey("bvin")]
     //configure caching using PetaPoco
-    [Cacheable("Items", CacheItemPriority.Default, 20)]
+    [Cacheable("HotCakes", CacheItemPriority.Default, 20)]
     //scope the objects to the ModuleId of a module on a page (or copy of a module on a page)
     [Scope("ModuleId")]
-    public class Item
+    public class HotCakes
     {
         ///<summary>
         /// The ID of your object with the name of the ItemName
         ///</summary>
-        public int ItemId { get; set; } = -1;
-        ///<summary>
-        /// A string with the name of the ItemName
-        ///</summary>
-        public string ItemName { get; set; }
+        public string bvin { get; set; }
+
+        
+        //public string Name { get; set; }
+
+        public string SKU { get; set; }
 
         /// <summary>
-        /// HotCakesID
+        /// Is it on stock?
         /// </summary>
+        public bool OutOfStockMode { get; set; }
+        
 
-        public string ItemHCID { get; set; }    
-
-
-        ///<summary>
-        /// The ModuleId of where the object was created and gets displayed
-        ///</summary>
-        public int ModuleId { get; set; }
-
-        /// <summary>
-        /// Is the item available for purchase
-        /// </summary>
-        public bool OnStock { get; set; }    
+        public int StoreID { get; set; }
+ 
 
 
         /// <summary>
         /// The name of the image file
         /// </summary>
-        public string ImageName { get; set; }
+        public string ImageFileSmall { get; set; }
 
 
     }

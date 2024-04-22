@@ -1,0 +1,28 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<IEnumerable<DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models.HotCakes>>
+
+@using System.Text.RegularExpressions
+@using DotNetNuke.Web.Mvc.Helpers
+@using System.Linq
+
+
+<div id="Items-@Dnn.ModuleContext.ModuleId">
+    @if (Model == null)
+    {
+        <p>@Dnn.LocalizeString("NoItems")</p>
+    }
+    else
+    {   /*
+        <ul class="tm_tl">
+            
+            @foreach (var product in Model)
+            {
+                <li class="tm_t">
+                    <h3>@product.bvin</h3>
+                </li>
+            }
+        </ul>*/
+        <h2>HotCakes elemek sikeresen beolvasva!</h2>
+
+
+    }
+</div>
