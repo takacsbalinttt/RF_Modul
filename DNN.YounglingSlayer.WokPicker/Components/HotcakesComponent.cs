@@ -9,25 +9,37 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Components
 {
     internal interface IHotCakesManager
     {
-        IEnumerable<Item> ReadHotCakes(string HCID);
+        IEnumerable<HotCakes> ReadHotCakes();
+        IEnumerable<HotCakes> SearchSKU(string SKU);
         
     }
 
     internal class HotCakesManager : ServiceLocator<IHotCakesManager, HotCakesManager>, IHotCakesManager
     {
-        public IEnumerable<Item> ReadHotCakes(string HCID)
+        public IEnumerable<HotCakes> ReadHotCakes()
         {
             /// READ HOTCAKES PRODUCTS!!!!
             
-            IEnumerable<Item> product;
+            IEnumerable<HotCakes> products;
             using (IDataContext ctx = DataContext.Instance())
             {
-                var rep = ctx.GetRepository<Item>();
-                product = rep.Get(HCID);
+                var rep = ctx.GetRepository<HotCakes>();
+                products = rep.Get();
             }
             
             
-            return null;
+            return products;
+        }
+
+        public IEnumerable<HotCakes> SearchSKU(string SKU)
+        {
+            IEnumerable<HotCakes> products;
+            using (IDataContext ctx = DataContext.Instance())
+            {
+                var rep = ctx.GetRepository<HotCakes>();
+                products = rep.Find("WHERE SKU = @0", SKU);
+            }
+            return products;
         }
 
         protected override System.Func<IHotCakesManager> GetFactory()

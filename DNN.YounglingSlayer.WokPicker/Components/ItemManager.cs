@@ -25,7 +25,6 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Components
         void DeleteItem(int itemId, int moduleId);
         void DeleteItem(Item t);
         IEnumerable<Item> GetItems(int moduleId);
-        IEnumerable<Item> ConnectHotcakes(int moduleId);
         Item GetItem(int itemId, int moduleId);
         void UpdateItem(Item t);
     }
@@ -67,10 +66,6 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Components
             return t;
         }
 
-        public IEnumerable<Item> ConnectHotcakes(int moduleId)
-        {
-            return null;
-        }
 
 
         public Item GetItem(int itemId, int moduleId)
