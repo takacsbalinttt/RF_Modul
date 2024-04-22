@@ -21,7 +21,6 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
         public ActionResult Index()
         {
             var items = HotCakesManager.Instance.ReadHotCakes();
-            System.Diagnostics.Debugger.Launch();
             return View(items);
         }
 
