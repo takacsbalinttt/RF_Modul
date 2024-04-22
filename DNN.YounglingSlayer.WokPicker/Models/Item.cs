@@ -17,7 +17,7 @@ using System.Web.Caching;
 
 namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
 {
-    [TableName("DNN.YounglingSlayer.WokPicker_Items")]
+    [TableName("WokPicker_Items")]
     //setup the primary key for table
     [PrimaryKey("ItemId", AutoIncrement = true)]
     //configure caching using PetaPoco
