@@ -31,12 +31,14 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
         ///</summary>
         public string bvin { get; set; }
 
+        
+        public string Name { get; set; }
+
+        public string SKU { get; set; }
+
         /// <summary>
         /// Is it on stock?
         /// </summary>
-        
-        public string SKU { get; set; }
-
         public bool OutOfStockMode { get; set; }
         
 
