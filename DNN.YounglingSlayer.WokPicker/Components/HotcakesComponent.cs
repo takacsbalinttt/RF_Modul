@@ -10,7 +10,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Components
     internal interface IHotCakesManager
     {
         IEnumerable<HotCakes> ReadHotCakes();
-        IEnumerable<HotCakes> SearchSKU(string SKU);
+        //HotCakes SearchSKU(string SKU);
         
     }
 
@@ -27,20 +27,20 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Components
                 products = rep.Get();
             }
             
-            
+            System.Diagnostics.Debugger.Launch();
             return products;
         }
-
-        public IEnumerable<HotCakes> SearchSKU(string SKU)
+        /*
+        public HotCakes SearchSKU(string SKU)
         {
-            IEnumerable<HotCakes> products;
+            HotCakes product;
             using (IDataContext ctx = DataContext.Instance())
             {
                 var rep = ctx.GetRepository<HotCakes>();
-                products = rep.Find("WHERE SKU = @0", SKU);
+                product = (HotCakes)rep.Find("WHERE SKU = @0", SKU);
             }
-            return products;
-        }
+            return product;
+        }*/
 
         protected override System.Func<IHotCakesManager> GetFactory()
         {

@@ -8,7 +8,7 @@ using System;
 using System.Linq;
 using System.Web.Mvc;
 
-/*
+
 namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
 {
 
@@ -17,11 +17,13 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
     [DnnHandleError]
     public class HotcakesController : DnnController
     {
-
-        public ActionResult QueryHotcakes()
+        [ModuleAction]
+        public ActionResult Index()
         {
-        
+            var items = HotCakesManager.Instance.ReadHotCakes();
+            System.Diagnostics.Debugger.Launch();
+            return View(items);
         }
 
     }
-}*/
+}

@@ -32,7 +32,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
         public string bvin { get; set; }
 
         
-        public string Name { get; set; }
+        //public string Name { get; set; }
 
         public string SKU { get; set; }
 
