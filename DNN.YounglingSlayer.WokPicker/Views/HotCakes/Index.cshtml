@@ -5,17 +5,9 @@
 @using System.Linq
 @using Dnn.Modules.Console
 
-@{string selectedBvin = "7A4FBF68-582F-4F4C-BF75-6DCE95F2D5A1";
+@{string selectedBvin = ViewBag.items.bvin;
 
-
-
-    selectedBvin = Dnn.ModuleContext.Settings["Bvin1"].ToString();
-
-    selectedBvin = selectedBvin.ToLower();
-
-    var item = Model.SingleOrDefault(x => x.bvin.Equals(selectedBvin));
-
-
+    var item = ViewBag.items;
 
 }
 
@@ -26,16 +18,7 @@
         <p>@Dnn.LocalizeString("NoItems")</p>
     }
     else
-    {   /*
-    <ul class="tm_tl">
-
-        @foreach (var product in Model)
-        {
-            <li class="tm_t">
-                <h3>@product.bvin</h3>
-            </li>
-        }
-    </ul>*/
+    { 
         <h2>HotCakes elemek sikeresen beolvasva!</h2>
         <h3>
             Választott bvin: @selectedBvin
