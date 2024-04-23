@@ -39,7 +39,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
         /// <summary>
         /// Is it on stock?
         /// </summary>
-        public bool OutOfStockMode { get; set; }
+        public int OutOfStockMode { get; set; }
         
 
         public int StoreID { get; set; }
