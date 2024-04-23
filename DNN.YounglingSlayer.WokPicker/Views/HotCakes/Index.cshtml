@@ -3,12 +3,16 @@
 @using System.Text.RegularExpressions
 @using DotNetNuke.Web.Mvc.Helpers
 @using System.Linq
+@using Dnn.Modules.Console
 
 @{string selectedBvin = "7A4FBF68-582F-4F4C-BF75-6DCE95F2D5A1";
 
-   selectedBvin = selectedBvin.ToLower();
- }
-@{
+
+
+    selectedBvin = Dnn.ModuleContext.Settings["Bvin1"].ToString();
+
+    selectedBvin = selectedBvin.ToLower();
+
     var item = Model.SingleOrDefault(x => x.bvin.Equals(selectedBvin));
 
 
