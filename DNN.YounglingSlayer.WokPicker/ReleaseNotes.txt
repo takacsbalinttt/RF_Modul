@@ -1,24 +1,26 @@
-﻿<h3>DNN.YounglingSlayer.WokPicker</h3>
+﻿<h3>WokSense Module</h3>
 <p class="Contributor">
 	YounglingSlayer <br />
 	<a href="mailto:levente.meszaros@stud.uni-corvinus.hu">levente.meszaros@stud.uni-corvinus.hu</a><br />
-	<a href=www.dnndev.me>www.dnndev.me</a><br />
-	This extension was created using <a href="https://www.christoc.com">Christoc's</a> Module Development Templates for DNN.
 </p>
 <hr/>
 <div class="License">
-	<h3>About the DNN.YounglingSlayer.WokPicker</h3>
+	<h3>About WokSense Module</h3>
 	<p class="Owner">
-		<b>Version CHANGEME</b><br /><br />
+		<b>Version 0.1.0</b><br /><br />
 	</p>
-	<p>Description about version.</p>
+	<p>Changes:</p>
 	
-	<h4>Bug Fixes</h4>
+	<h4>New</h4>
 	<ul>
-			<li>List</li>
-			<li>of</li>
-			<li>bug</li>
-			<li>fixes</li>
+			<li>Made the module read the db</li>
+			<li>ugly interface added</li>
+	</ul>
+	<h4>Removed</h4>
+	<ul>
+			<li>All of my energy for the week</li>
+			<li>My will to live</li>
+			<li>A lot of my free time</li>
 	</ul>
 	
 </div>
