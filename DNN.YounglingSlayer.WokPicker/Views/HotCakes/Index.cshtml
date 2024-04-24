@@ -34,7 +34,19 @@
             var product_image = product_folder + item.ImageFileSmall;
 
 
+            <div class="WokPicker_card">
+                <div class="WokPicker_Img">
+                    <img src=@product_image alt=" teszt">
+                </div>
+                <p class="WokPicker_card_title">
+                    @ViewBag.ProductName
+                </p>
 
+            </div>
+
+
+
+            /*
             <p>
                 név: @ViewBag.ProductName
 
@@ -44,7 +56,7 @@
                 <img src=@product_image alt=" teszt">
                 <br>
                 Raktáron: @item.OutOfStockMode
-            </p>
+            </p>*/
     
         }
 
