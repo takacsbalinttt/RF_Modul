@@ -8,6 +8,7 @@ using System.Dynamic;
 
 namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Components
 {
+    
     internal interface IHotCakesManager
     {
         IEnumerable<HotCakes> ReadHotCakes();
