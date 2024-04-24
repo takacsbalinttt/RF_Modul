@@ -35,6 +35,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             var bvin1 = settings.GetValue<string>("DNN.YounglingSlayer.WokPicker_Bvin1").ToLower();
 
             ViewBag.items = FindBVIN(bvin1);
+            ViewBag.ProductName = ProductTranslationsManager.Instance.TranslateNameByProductID(bvin1, "en-US");
             return View(items);
         }
         HotCakes FindBVIN(string bvin)

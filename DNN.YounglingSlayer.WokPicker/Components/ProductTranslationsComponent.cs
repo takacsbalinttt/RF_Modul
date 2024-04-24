@@ -3,6 +3,7 @@ using DotNetNuke.Data;
 using DotNetNuke.Framework;
 using System.Collections.Generic;
 using System.Dynamic;
+using System.Reflection.Emit;
 
 
 namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Components
@@ -14,6 +15,8 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Components
         IEnumerable<ProductTranslations> SearchProductID(string ProductID);
 
         ProductTranslations GetByProductTranslationId(int ProductTranslationId);
+
+        string TranslateNameByProductID(string ProductID, string Culture);
         
     }
 
@@ -35,6 +38,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Components
         
         public  IEnumerable<ProductTranslations> SearchProductID(string ProductID)
         {
+            ProductID = ProductID.Trim().ToLower();
             IEnumerable<ProductTranslations> product;
             using (IDataContext ctx = DataContext.Instance())
             {
@@ -54,6 +58,26 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Components
             }
             return product;
         }
+
+        public string TranslateNameByProductID(string ProductID, string Culture)
+        {
+            ProductID = ProductID.Trim().ToLower();
+            Culture = Culture.Trim().ToLower();
+            string productName = "";
+            IEnumerable<ProductTranslations> product;
+            using (IDataContext ctx = DataContext.Instance())
+            {
+                var rep = ctx.GetRepository<ProductTranslations>();
+                product = rep.Find("WHERE ProductID = @0 AND Culture = @1", ProductID, Culture);
+            }
+            foreach (var p in product)
+            {
+                productName = p.ProductName;
+            }
+            return productName;
+        }
+
+
 
 
         protected override System.Func<IProductTranslationsManager> GetFactory()

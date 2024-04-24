@@ -26,5 +26,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
         public string ProductName { get; set; }
 
         public string MetaTitle { get; set; }
+
+        public string SmallImageAlternateText { get; set; }
     }
 }
