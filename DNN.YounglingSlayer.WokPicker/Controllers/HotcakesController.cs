@@ -26,15 +26,14 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
         public ActionResult Index()
         {
             var settings = this.ActiveModule.ModuleSettings;
+
+            if(settings.Count == 0)
+            {
+                return View("NoSettings");
+            }
             var items = HotCakesManager.Instance.ReadHotCakes();
             var bvin1 = settings.GetValue<string>("DNN.YounglingSlayer.WokPicker_Bvin1").ToLower();
-            /*
-            if(ModuleContext.Settings.ContainsKey("WokPicker_Bvin1"))
-            {
-                bvin = ModuleContext.Settings["Bvin1"].ToString();
-            }
 
-            */
             ViewBag.items = FindBVIN(bvin1);
             return View(items);
         }

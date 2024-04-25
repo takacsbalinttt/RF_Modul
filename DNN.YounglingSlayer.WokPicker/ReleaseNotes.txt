@@ -15,12 +15,17 @@
 	<ul>
 			<li>Made the module read the db</li>
 			<li>ugly interface added</li>
+
 	</ul>
 	<h4>Removed</h4>
 	<ul>
 			<li>All of my energy for the week</li>
 			<li>My will to live</li>
 			<li>A lot of my free time</li>
+	</ul>
+	<h4>Bugfixes<h4>
+		<ul>
+			<li>made it work with empty settings</li>
 	</ul>
 	
 </div>

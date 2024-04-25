@@ -23,19 +23,25 @@
         <h3>
             Választott bvin: @selectedBvin
         </h3>
-     
+
         if (item == null)
         {
             <p>no cucc sry</p>
         }
         else
         {
+            var product_folder = @"\Portals\0\Hotcakes\Data\products\" + item.bvin + @"\";
+            var product_image = product_folder + item.ImageFileSmall;
+
+
+
             <p>
-                @item.bvin
+                név: teszt
+
                 <br>
-                @item.SKU
+                SKU: @item.SKU
                 <br>
-                @item.ImageFileSmall
+                <img src=@product_image alt=" teszt">
                 <br>
                 Raktáron: @item.OutOfStockMode
             </p>

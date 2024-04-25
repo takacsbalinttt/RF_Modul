@@ -154,7 +154,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Providers\DataProviders\SqlDataProvider\00.01.00.SqlDataProvider" />
+    <Content Include="Providers\DataProviders\SqlDataProvider\00.01.01.SqlDataProvider" />
     <Content Include="Providers\DataProviders\SqlDataProvider\Uninstall.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +172,7 @@
     <Content Include="Views\HotCakes\Index.cshtml" />
     <Content Include="Views\HotCakes\Edit.cshtml" />
     <Content Include="Views\Settings\Settings.cshtml" />
+    <Content Include="Views\HotCakes\NoSettings.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
