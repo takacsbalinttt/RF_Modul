@@ -30,9 +30,18 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
         public ActionResult Settings()
         {
             var settings = new Models.Settings();
+            var card1 = new Models.CardSettings();
             settings.MultiSelect = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_MultiSelect", false);
             settings.Bvin1 = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Bvin1", string.Empty);
-            settings.NumberOfItems = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_NumberOfItems", 8);
+            settings.NumberOfItems = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_NumberOfItems", 1);
+            
+            for (int i = 0; i < settings.NumberOfItems; i++)
+            {
+                var card = new Models.CardSettings();
+                card.bvin = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Card" + (i + 1) + "_Bvin", string.Empty);
+                card.cardId = i + 1;
+                settings.cards.Add(card);
+            }
 
             return View(settings);
         }
@@ -50,6 +59,11 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             ModuleContext.Configuration.ModuleSettings["DNN.YounglingSlayer.WokPicker_MultiSelect"] = settings.MultiSelect.ToString();
             ModuleContext.Configuration.ModuleSettings["DNN.YounglingSlayer.WokPicker_Bvin1"] = settings.Bvin1.ToString();
             ModuleContext.Configuration.ModuleSettings["DNN.YounglingSlayer.WokPicker_NumberOfItems"] = settings.NumberOfItems.ToString();
+
+            for (int i = 0; i < settings.NumberOfItems; i++)
+            {
+                ModuleContext.Configuration.ModuleSettings["DNN.YounglingSlayer.WokPicker_Card" + (i + 1) + "_Bvin"] = settings.cards[i].bvin.ToString();
+            }
 
             return RedirectToDefaultRoute();
         }

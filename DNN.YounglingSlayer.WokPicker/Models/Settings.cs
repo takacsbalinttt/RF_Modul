@@ -24,6 +24,6 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
         public int NumberOfItems { get; set; }
 
 
-        public List<CardSettings> cards { get; set; }
+        public List<CardSettings> cards { get; set; } = new List<CardSettings>();
     }
 }
