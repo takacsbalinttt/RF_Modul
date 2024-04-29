@@ -10,6 +10,7 @@
 ' 
 */
 using System;
+using System.Collections.Generic;
 
 namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
 {
@@ -20,6 +21,9 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
 
         public string Bvin1 { get; set; }   
         
-        public int NumberOfItems { get; set; }   
+        public int NumberOfItems { get; set; }
+
+
+        public List<CardSettings> cards { get; set; }
     }
 }

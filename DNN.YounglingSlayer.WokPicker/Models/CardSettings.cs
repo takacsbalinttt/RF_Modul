@@ -15,6 +15,10 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
 {
     public class CardSettings
     {
+        public int cardId { get; set; }
+
+        public int section { get; set; }
+
         public string bvin { get; set; }   
         
         public string nameOverride { get; set; }
