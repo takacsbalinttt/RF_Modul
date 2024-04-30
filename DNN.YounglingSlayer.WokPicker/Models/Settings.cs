@@ -21,5 +21,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
         public string Bvin1 { get; set; }   
         
         public int NumberOfItems { get; set; }   
+
+        public string culture { get; set; } 
     }
 }
