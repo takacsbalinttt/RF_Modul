@@ -30,14 +30,14 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
         public ActionResult Settings()
         {
             var settings = new Models.Settings();
-            var card1 = new Models.CardSettings();
+            var card1 = new Models.Card();
             settings.MultiSelect = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_MultiSelect", false);
             settings.Bvin1 = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Bvin1", string.Empty);
             settings.NumberOfItems = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_NumberOfItems", 1);
             
             for (int i = 0; i < settings.NumberOfItems; i++)
             {
-                var card = new Models.CardSettings();
+                var card = new Models.Card();
                 card.bvin = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Card" + (i + 1) + "_Bvin", string.Empty);
                 card.cardId = i + 1;
                 settings.cards.Add(card);

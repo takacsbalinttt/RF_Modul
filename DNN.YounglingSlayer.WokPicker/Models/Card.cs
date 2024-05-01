@@ -13,7 +13,7 @@ using System;
 
 namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
 {
-    public class CardSettings
+    public class Card
     {
         public int cardId { get; set; }
 
