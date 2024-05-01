@@ -35,25 +35,16 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
 
             var settings = new Models.Settings();
             var card1 = new Models.Card();
-            settings.MultiSelect = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_MultiSelect", false);
-            settings.Bvin1 = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Bvin1", string.Empty);
-            settings.NumberOfItems = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_NumberOfItems", 1);
+            settings.MultiSelect = config.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_MultiSelect", false);
+            settings.Bvin1 = config.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Bvin1", string.Empty);
+            settings.NumberOfItems = config.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_NumberOfItems", 1);
 
-            /*
-            for (int i = 1; i < settings.NumberOfSections + 1; i++)
-            {
-                var section = new Models.Section();
-                section.SectionID = i;
-                section.SectionName = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Section" + (i) + "_Name", string.Empty);
-                section.SectionDescription = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Section" + (i) + "_Description", string.Empty);
-                section.CardCount = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Section" + (i) + "_CardCount", 1);
-                section.MultiSelect = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Section" + (i) + "_MultiSelect", false);
-                section.Hide = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Section" + (i) + "_Hide", false);
-                section.Cards = new List<Models.Card>();
+
+            ViewBag.section1 = 1;
 
 
 
-            }*/
+
 
 
 
@@ -62,13 +53,37 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             for (int i = 0; i < settings.NumberOfItems; i++)
             {
                 var card = new Models.Card();
-                card.Bvin = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Card" + (i + 1) + "_Bvin", string.Empty);
+                card.Bvin = config.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Card" + (i + 1) + "_Bvin", string.Empty);
                 card.CardId = i + 1;
                 settings.cards.Add(card);
             }
 
             return View(settings);
         }
+
+        public ActionResult Section(int sectionId)
+        {
+            var config = ModuleContext.Configuration.ModuleSettings;
+            var section = new Models.Section();
+
+            section.Name = config.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Section" + sectionId + "_Name", string.Empty);
+            section.Description = config.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Section" + sectionId + "_Description", string.Empty);
+            section.CardCount = config.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Section" + sectionId + "_CardCount", 1);
+            section.MultiSelect = config.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Section" + sectionId + "_MultiSelect", false);
+            section.Hide = config.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Section" + sectionId + "_Hide", false);
+
+
+
+
+
+
+            return View(section);
+        }
+
+
+
+
+
 
         /// <summary>
         /// 
@@ -80,16 +95,40 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
         [DotNetNuke.Web.Mvc.Framework.ActionFilters.ValidateAntiForgeryToken]
         public ActionResult Settings(Models.Settings settings)
         {
-            ModuleContext.Configuration.ModuleSettings["DNN.YounglingSlayer.WokPicker_MultiSelect"] = settings.MultiSelect.ToString();
-            ModuleContext.Configuration.ModuleSettings["DNN.YounglingSlayer.WokPicker_Bvin1"] = settings.Bvin1.ToString();
-            ModuleContext.Configuration.ModuleSettings["DNN.YounglingSlayer.WokPicker_NumberOfItems"] = settings.NumberOfItems.ToString();
+            var config = ModuleContext.Configuration.ModuleSettings;
+
+            config["DNN.YounglingSlayer.WokPicker_MultiSelect"] = settings.MultiSelect.ToString();
+            config["DNN.YounglingSlayer.WokPicker_Bvin1"] = settings.Bvin1.ToString();
+            config["DNN.YounglingSlayer.WokPicker_NumberOfItems"] = settings.NumberOfItems.ToString();
 
             for (int i = 0; i < settings.NumberOfItems; i++)
             {
-                ModuleContext.Configuration.ModuleSettings["DNN.YounglingSlayer.WokPicker_Card" + (i + 1) + "_Bvin"] = settings.cards[i].Bvin.ToString();
+                config["DNN.YounglingSlayer.WokPicker_Card" + (i + 1) + "_Bvin"] = settings.cards[i].Bvin.ToString();
             }
 
             return RedirectToDefaultRoute();
         }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        [DotNetNuke.Web.Mvc.Framework.ActionFilters.ValidateAntiForgeryToken]
+
+        public ActionResult Section(Models.Section section)
+        {
+            var config = ModuleContext.Configuration.ModuleSettings;
+
+            config["DNN.YounglingSlayer.WokPicker_Section" + section.Id + "_Name"] = section.Name.ToString();
+            config["DNN.YounglingSlayer.WokPicker_Section" + section.Id + "_Description"] = section.Description.ToString();
+            config["DNN.YounglingSlayer.WokPicker_Section" + section.Id + "_CardCount"] = section.CardCount.ToString();
+            config["DNN.YounglingSlayer.WokPicker_Section" + section.Id + "_MultiSelect"] = section.MultiSelect.ToString();
+            config["DNN.YounglingSlayer.WokPicker_Section" + section.Id + "_Hide"] = section.Hide.ToString();
+
+            return RedirectToDefaultRoute();
+        }
+
+
+
+
+
     }
 }

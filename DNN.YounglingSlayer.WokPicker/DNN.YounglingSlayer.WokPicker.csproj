@@ -177,6 +177,7 @@
     <Content Include="Views\HotCakes\Edit.cshtml" />
     <Content Include="Views\Settings\Settings.cshtml" />
     <Content Include="Views\HotCakes\NoSettings.cshtml" />
+    <Content Include="Views\Settings\Section.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
