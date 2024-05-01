@@ -19,17 +19,17 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
         /// <summary>
         /// The ID of the section
         /// </summary>
-        public int SectionID { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// The name of the section
         /// </summary>
-        public string SectionName { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// The description of the section
         /// </summary>
-        public string SectionDescription { get; set; }
+        public string Description { get; set; }
 
         /// <summary>
         /// The number of cards in the section

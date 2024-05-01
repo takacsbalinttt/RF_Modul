@@ -71,6 +71,17 @@
                     <viewOrder>0</viewOrder>
                     <supportsPopUps>True</supportsPopUps>
                   </moduleControl>
+					<moduleControl>
+						<controlKey>Section</controlKey>
+						<controlSrc>DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers/Settings/Section.mvc</controlSrc>
+						<supportsPartialRendering>False</supportsPartialRendering>
+						<controlTitle>Edit Section</controlTitle>
+						<controlType>Edit</controlType>
+						<iconFile />
+						<helpUrl />
+						<viewOrder>0</viewOrder>
+						<supportsPopUps>True</supportsPopUps>
+					</moduleControl>
                   <moduleControl>
                     <controlKey>Settings</controlKey>
                     <controlSrc>DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers/Settings/Settings.mvc</controlSrc>
