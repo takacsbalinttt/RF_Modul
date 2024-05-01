@@ -2,10 +2,8 @@
 
 @using System.Collections.Generic
 @using DotNetNuke.Web.Mvc.Helpers
+@using DotNetNuke.Web.UI.WebControls
 
-<div id="Item-@Dnn.ModuleContext.ModuleId">
-    <div class="dnnForm dnnEditBasicSettings" id="dnnEditBasicSettings">
-        <div class="dnnFormExpandContent dnnRight "><a href="#">@Dnn.LocalizeString("ExpandAll")</a></div>
 
         <h2 id="dnnSitePanel-BasicSettings" class="dnnFormSectionHead dnnClear">
             <a href="#" class="dnnSectionExpanded">@Dnn.LocalizeString("BasicSettings")</a>
@@ -52,26 +50,5 @@
 
 
         </fieldset>
-    </div>
     <button type="submit" class="dnnPrimaryAction">@Dnn.LocalizeString("Submit")</button>
     <a id="cancelEdit" href="#" class="dnnSecondaryAction">@Dnn.LocalizeString("Cancel")</a>
-</div>
-
-<script type="text/javascript">
-    /*globals jQuery, window, Sys */
-    (function($, Sys) {
-        function dnnEditBasicSettings() {
-            $('#dnnEditBasicSettings').dnnPanels();
-            $('#dnnEditBasicSettings .dnnFormExpandContent a').dnnExpandAll({ expandText: '@Dnn.LocalizeString("ExpandAll")', collapseText: '@Dnn.LocalizeString("CollapseAll")', targetArea: '#dnnEditBasicSettings' });
-        }
-
-        $(function() {
-            $('#cancelEdit').click(function() { dnnModal.closePopUp(false); });
-            dnnEditBasicSettings();
-            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function() {
-                dnnEditBasicSettings();
-            });
-        });
-
-    }(jQuery, window.Sys));
-</script>

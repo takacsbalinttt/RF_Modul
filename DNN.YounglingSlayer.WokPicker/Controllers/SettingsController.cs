@@ -72,8 +72,8 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             var section = new Models.Section();
             section.Id = sectionId;
 
-            section.Name = config.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Section" + sectionId + "_Name", string.Empty);
-            section.Description = config.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Section" + sectionId + "_Description", string.Empty);
+            section.Name = config.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Section" + sectionId + "_Name", "nincs");
+            section.Description = config.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Section" + sectionId + "_Description", "nincs");
             section.CardCount = config.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Section" + sectionId + "_CardCount", 1);
             section.MultiSelect = config.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Section" + sectionId + "_MultiSelect", false);
             section.Hide = config.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Section" + sectionId + "_Hide", false);
@@ -81,8 +81,27 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
 
 
 
-
             return View(section);
+        }
+
+
+        public ActionResult CardSettings(int cardId, int sectionId)
+        {
+            var config = ModuleContext.Configuration.ModuleSettings;
+            var card = new Models.Card();
+            card.Section = sectionId;
+
+            card.Bvin = config.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Section" + sectionId + "_Card" + cardId  + "_Bvin", "nincs");
+            card.NameOverride = config.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Section" + sectionId + "_Card" + cardId + "_NameOverride", false);
+            card.NameOverrideText = config.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Section" + sectionId + "_Card" + cardId + "_NameOverrideText", "nincs");
+            card.ImageOverride = config.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Section" + sectionId + "_Card" + cardId + "_ImageOverride", false);
+            card.ImageOverrideFile = config.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Section" + sectionId + "_Card" + cardId + "_ImageOverrideFile", "nincs");
+            card.Disable = config.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Section" + sectionId + "_Card" + cardId + "_Disable", false);
+            card.Spicy = config.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Section" + sectionId + "_Card" + cardId + "_Spicy", false);
+
+            return View(card);
+
+
         }
 
 
@@ -121,6 +140,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
 
         public ActionResult Section(Models.Section section)
         {
+
             var config = ModuleContext.Configuration.ModuleSettings;
             config["DNN.YounglingSlayer.WokPicker_Section" + section.Id + "_Name"] = section.Name.ToString();
             config["DNN.YounglingSlayer.WokPicker_Section" + section.Id + "_Description"] = section.Description.ToString();
@@ -128,7 +148,9 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             config["DNN.YounglingSlayer.WokPicker_Section" + section.Id + "_MultiSelect"] = section.MultiSelect.ToString();
             config["DNN.YounglingSlayer.WokPicker_Section" + section.Id + "_Hide"] = section.Hide.ToString();
 
-            return RedirectToDefaultRoute();
+            
+
+            return RedirectToDefaultRoute();   
         }
 
 
