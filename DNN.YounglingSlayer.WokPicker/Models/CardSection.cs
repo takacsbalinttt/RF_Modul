@@ -16,19 +16,45 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
 {
     public class CardSection
     {
-        public int sectionID { get; set; }
+        /// <summary>
+        /// The ID of the section
+        /// </summary>
+        public int SectionID { get; set; }
 
-        public string sectionName { get; set; }
+        /// <summary>
+        /// The name of the section
+        /// </summary>
+        public string SectionName { get; set; }
 
-        public string sectionDescription { get; set; }
+        /// <summary>
+        /// The description of the section
+        /// </summary>
+        public string SectionDescription { get; set; }
 
-        public int cardNumber { get; set; }   
+        /// <summary>
+        /// The number of cards in the section
+        /// </summary>
+
+        public int CardCount { get; set; }   
         
-        public bool multiSelect { get; set; }
+        /// <summary>
+        /// Is the section in MultiSelect mode
+        /// </summary>
 
-        public bool hide { get; set; }
+        public bool MultiSelect { get; set; }
 
-        public List<Card> cards { get; set; } = new List<Card>();
+        /// <summary>
+        /// Is the section hidden
+        /// </summary>
+
+        public bool Hide { get; set; }
+
+        /// <summary>
+        /// The list of the actual card items in the section
+        /// </summary>
+
+
+        public List<Card> Cards { get; set; } = new List<Card>();
 
     }
 }

@@ -38,8 +38,8 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             for (int i = 0; i < settings.NumberOfItems; i++)
             {
                 var card = new Models.Card();
-                card.bvin = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Card" + (i + 1) + "_Bvin", string.Empty);
-                card.cardId = i + 1;
+                card.Bvin = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Card" + (i + 1) + "_Bvin", string.Empty);
+                card.CardId = i + 1;
                 settings.cards.Add(card);
             }
 
@@ -62,7 +62,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
 
             for (int i = 0; i < settings.NumberOfItems; i++)
             {
-                ModuleContext.Configuration.ModuleSettings["DNN.YounglingSlayer.WokPicker_Card" + (i + 1) + "_Bvin"] = settings.cards[i].bvin.ToString();
+                ModuleContext.Configuration.ModuleSettings["DNN.YounglingSlayer.WokPicker_Card" + (i + 1) + "_Bvin"] = settings.cards[i].Bvin.ToString();
             }
 
             return RedirectToDefaultRoute();

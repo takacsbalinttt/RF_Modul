@@ -15,18 +15,55 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
 {
     public class Card
     {
-        public int cardId { get; set; }
 
-        public int section { get; set; }
+        /// <summary>
+        /// The ID of the card
+        /// </summary>
+        public int CardId { get; set; }
 
-        public string bvin { get; set; }   
+        /// <summary>
+        /// The section the card is in
+        /// </summary>
+        public int Section { get; set; }
+
+        /// <summary>
+        /// The BVIN of the HotCakes Item the card displays
+        /// </summary>
+
+        public string Bvin { get; set; }   
+
+        /// <summary>
+        /// Override the name of the item?
+        /// </summary>
+
+        public bool NameOverride { get; set; }
+
+        /// <summary>
+        /// To override the name of the item
+        /// </summary>
+        public string NameOverrideText { get; set; }
         
-        public string nameOverride { get; set; }
-        
-        public string imageOverride { get; set; }
 
-        public bool disable { get; set; }
+        /// <summary>
+        /// Override the image of the item?
+        /// </summary>
+        public bool ImageOverride { get; set; } 
 
-        public bool spicy { get; set; }
+        /// <summary>
+        ///  The file name of the image to override with
+        /// </summary>
+        public string ImageOverrideFile { get; set; }
+
+        /// <summary>
+        /// Is the card disabled?
+        /// </summary>
+
+        public bool Disable { get; set; }
+
+        /// <summary>
+        /// Is the Card Spicy?
+        /// </summary>
+
+        public bool Spicy { get; set; }
     }
 }
