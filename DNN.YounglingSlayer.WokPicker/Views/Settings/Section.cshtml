@@ -10,9 +10,14 @@
         <h2 id="dnnSitePanel-BasicSettings" class="dnnFormSectionHead dnnClear">
             <a href="#" class="dnnSectionExpanded">@Dnn.LocalizeString("BasicSettings")</a>
         </h2>
-        <p>Modul sorszáma: @Model.Id</p>
         <fieldset>
             <p>hello</p>
+            <div class="dnnFormItem">
+                <div class="dnnLabel" style="position: relative;">
+                    @Html.LabelFor(m => Model.Id, new { @class = "col-md-2 control-label" })
+                </div>
+                @Html.TextBoxFor(m => Model.Id, new { @readonly = "readonly" })
+            </div>
             <div class="dnnFormItem">
                 <div class="dnnLabel" style="position: relative;">
                     @Html.LabelFor(m => Model.Name, new { @class = "col-md-2 control-label" })
