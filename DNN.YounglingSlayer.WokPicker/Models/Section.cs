@@ -14,7 +14,7 @@ using System.Collections.Generic;
 
 namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
 {
-    public class CardSection
+    public class Section
     {
         /// <summary>
         /// The ID of the section

@@ -15,6 +15,8 @@ using DotNetNuke.Security;
 using DotNetNuke.Web.Mvc.Framework.ActionFilters;
 using DotNetNuke.Web.Mvc.Framework.Controllers;
 using System.Web.Mvc;
+using System.Collections.Generic;
+
 
 namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
 {
@@ -29,11 +31,33 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
         [HttpGet]
         public ActionResult Settings()
         {
+            var config = ModuleContext.Configuration.ModuleSettings;
+
             var settings = new Models.Settings();
             var card1 = new Models.Card();
             settings.MultiSelect = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_MultiSelect", false);
             settings.Bvin1 = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Bvin1", string.Empty);
             settings.NumberOfItems = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_NumberOfItems", 1);
+
+            /*
+            for (int i = 1; i < settings.NumberOfSections + 1; i++)
+            {
+                var section = new Models.Section();
+                section.SectionID = i;
+                section.SectionName = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Section" + (i) + "_Name", string.Empty);
+                section.SectionDescription = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Section" + (i) + "_Description", string.Empty);
+                section.CardCount = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Section" + (i) + "_CardCount", 1);
+                section.MultiSelect = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Section" + (i) + "_MultiSelect", false);
+                section.Hide = ModuleContext.Configuration.ModuleSettings.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Section" + (i) + "_Hide", false);
+                section.Cards = new List<Models.Card>();
+
+
+
+            }*/
+
+
+
+
             
             for (int i = 0; i < settings.NumberOfItems; i++)
             {
