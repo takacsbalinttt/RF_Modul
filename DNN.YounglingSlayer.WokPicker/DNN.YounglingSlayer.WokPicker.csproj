@@ -126,6 +126,7 @@
     <Compile Include="Components\ProductTranslationsComponent.cs" />
     <Compile Include="Controllers\HotcakesController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
+    <Compile Include="Models\CardSection.cs" />
     <Compile Include="Models\HotCakes.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Controllers\ItemController.cs" />
