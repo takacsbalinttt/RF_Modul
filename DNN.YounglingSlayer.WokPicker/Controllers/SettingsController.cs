@@ -39,14 +39,8 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             settings.Bvin1 = config.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_Bvin1", string.Empty);
             settings.NumberOfItems = config.GetValueOrDefault("DNN.YounglingSlayer.WokPicker_NumberOfItems", 1);
 
-
-            ViewBag.section1 = 1;
-
-
-
-
-
-
+            // TESZT VÁLTOZÓ
+            ViewBag.section1 = 0;
 
 
             
