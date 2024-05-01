@@ -20,9 +20,9 @@
     else
     { 
         <h2>HotCakes elemek sikeresen beolvasva!</h2>
-        <h3>
+        <p>
             Választott bvin: @selectedBvin
-        </h3>
+        </p>
 
         if (item == null)
         {
@@ -32,7 +32,7 @@
         {
             var product_folder = @"\Portals\0\Hotcakes\Data\products\" + item.bvin + @"\";
             var product_image = product_folder + item.ImageFileSmall;
-
+            <p>@product_image</p>
 
             <div class="WokPicker_card">
                 <div class="WokPicker_Img">
