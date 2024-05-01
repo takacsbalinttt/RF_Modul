@@ -27,6 +27,13 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
         public int Section { get; set; }
 
         /// <summary>
+        /// The HotCakes Item the card displays
+        /// </summary>
+
+        public HotCakes Item { get; set; }
+
+
+        /// <summary>
         /// The BVIN of the HotCakes Item the card displays
         /// </summary>
 
