@@ -32,12 +32,13 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             {
                 return View("NoSettings");
             }
-            //var items = HotCakesManager.Instance.ReadHotCakes();
+            /*
+            var items = HotCakesManager.Instance.ReadHotCakes();
             var bvin1 = settings.GetValue<string>("WokPicker_Bvin1").ToLower();
 
             ViewBag.items = FindBVIN(bvin1);
             ViewBag.ProductName = ProductTranslationsManager.Instance.TranslateNameByProductID(bvin1, "en-US");
-
+            */
             var numberOfSections = settings.GetValueOrDefault<int>("WokPicker_NumberOfSections",1);
             ViewBag.numberOfSections = numberOfSections;
 
