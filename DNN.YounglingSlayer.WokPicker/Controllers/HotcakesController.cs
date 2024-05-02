@@ -33,12 +33,12 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
                 return View("NoSettings");
             }
             //var items = HotCakesManager.Instance.ReadHotCakes();
-            var bvin1 = settings.GetValue<string>("DNN.YounglingSlayer.WokPicker_Bvin1").ToLower();
+            var bvin1 = settings.GetValue<string>("WokPicker_Bvin1").ToLower();
 
             ViewBag.items = FindBVIN(bvin1);
             ViewBag.ProductName = ProductTranslationsManager.Instance.TranslateNameByProductID(bvin1, "en-US");
 
-            var numberOfSections = settings.GetValueOrDefault<int>("DNN.YounglingSlayer.WokPicker_NumberOfSections",1);
+            var numberOfSections = settings.GetValueOrDefault<int>("WokPicker_NumberOfSections",1);
             ViewBag.numberOfSections = numberOfSections;
 
             List<Section> sections = new List<Section>();
@@ -61,7 +61,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
         Section MakeSection(int sectionId)
         {
             var settings = this.ActiveModule.ModuleSettings;
-            var setting_key = "DNN.YounglingSlayer.WokPicker_Section" + sectionId + "_";
+            var setting_key = "WokPicker_Section" + sectionId + "_";
             Section section = new Section();
 
 
@@ -83,7 +83,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
         {
             //System.Diagnostics.Debugger.Launch();
             var settings = this.ActiveModule.ModuleSettings;
-            var setting_key = "DNN.YounglingSlayer.WokPicker_Section" + sectionId + "_Card" + cardId + "_";
+            var setting_key = "WokPicker_Section" + sectionId + "_Card" + cardId + "_";
             var culture = ("en-US");
             Card card = new Card();
 
@@ -103,6 +103,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             else
             {
                 var product_folder = @"\Portals\0\Hotcakes\Data\products\" + card.Item.bvin + @"\";
+                var override_folder = @"\Portals\0\WokPicker\img\";
                 card.CardId = cardId;
                 card.Section = sectionId;
                 card.Bvin = card.Item.bvin;
@@ -116,7 +117,12 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
 
                 if (card.ImageOverride)
                 {
-                    card.Item.ImageFileSmall = product_folder + card.ImageOverrideFile;
+
+                    card.Item.ImageFileSmall = override_folder + card.ImageOverrideFile;
+                }
+                else
+                {
+                    card.Item.ImageFileSmall = product_folder + card.Item.ImageFileSmall;
                 }
 
                 return card;

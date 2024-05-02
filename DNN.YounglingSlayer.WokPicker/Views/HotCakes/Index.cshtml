@@ -61,6 +61,7 @@
         {
             foreach (var category in Model)
             {
+                <div class="WokPicker_section">
                 <h2>@category.Name</h2>
                 <div class="WokPicker_card_container">
                     @foreach (var item in category.Cards)
@@ -83,7 +84,7 @@
                                     <img src=@item.Item.ImageFileSmall alt="teszt">
                                 </div>
                                 <p class="WokPicker_card_title">
-                                    if (item.NameOverride)
+                                    @if (item.NameOverride)
                                     {
                                         @item.NameOverrideText
                                     }
@@ -98,6 +99,7 @@
 
                     }
                 </div>
+            </div>
             }
         }
         else
