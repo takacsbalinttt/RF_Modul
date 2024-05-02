@@ -1,6 +1,6 @@
 <dotnetnuke type="Package" version="5.0">
   <packages>
-    <package name="DNN.YounglingSlayer.WokPicker" type="Module" version="0.2.0">
+    <package name="DNN.YounglingSlayer.WokPicker" type="Module" version="0.3.0">
       <friendlyName>DNN.YounglingSlayer.WokPicker</friendlyName>
       <description>DNN.YounglingSlayer.WokPicker</description>
       <iconFile>~/Icons/Sigma/Software_32X32_Standard.png</iconFile>
@@ -21,13 +21,13 @@
             <basePath>DesktopModules\MVC\DNN.YounglingSlayer.WokPicker</basePath>
             <script type="Install">
               <path>Providers\DataProviders\SqlDataProvider</path>
-              <name>0.2.0.SqlDataProvider</name>
-              <version>0.2.0</version>
+              <name>0.3.0.SqlDataProvider</name>
+              <version>0.3.0</version>
             </script>
             <script type="UnInstall">
               <path>Providers\DataProviders\SqlDataProvider</path>
               <name>Uninstall.SqlDataProvider</name>
-              <version>0.2.0</version>
+              <version>0.3.0</version>
             </script>
           </scripts>
         </component>
