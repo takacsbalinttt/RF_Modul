@@ -37,7 +37,6 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             var settings = new Models.Settings();
             var card1 = new Models.Card();
             settings.MultiSelect = config.GetValueOrDefault("WokPicker_MultiSelect", false);
-            settings.Bvin1 = config.GetValueOrDefault("WokPicker_Bvin1", string.Empty);
             settings.NumberOfItems = config.GetValueOrDefault("WokPicker_NumberOfItems", 1);
             settings.NumberOfSections = config.GetValueOrDefault("WokPicker_NumberOfSections", 1);
 
@@ -122,7 +121,6 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
         public ActionResult Settings(Models.Settings settings)
         {
             ModuleContext.Configuration.ModuleSettings["WokPicker_MultiSelect"] = settings.MultiSelect.ToString();
-            ModuleContext.Configuration.ModuleSettings["WokPicker_Bvin1"] = settings.Bvin1.ToString();
             ModuleContext.Configuration.ModuleSettings["WokPicker_NumberOfItems"] = settings.NumberOfItems.ToString();
             ModuleContext.Configuration.ModuleSettings["WokPicker_NumberOfSections"] = settings.NumberOfSections.ToString();
            
