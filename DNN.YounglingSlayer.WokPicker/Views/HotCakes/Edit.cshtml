@@ -11,19 +11,7 @@
             <a href="#" class="dnnSectionExpanded">@Dnn.LocalizeString("BasicSettings")</a>
         </h2>
         <fieldset>
-            <div class="dnnFormItem">
-                <div><label for="itemName">@Dnn.LocalizeString("lblName")</label></div>
-                @Html.TextBoxFor(m => m.ItemName)
-            </div>
-            <div class="dnnFormItem">
-                <div><label for="itemDescription">@Dnn.LocalizeString("lblDescription")</label></div>
-                @Html.TextArea("itemDescription", Model.ItemDescription)
-            </div>
-            <div class="dnnFormItem">
-                <div><label for="itemUser">@Dnn.LocalizeString("lblAssignedUser")</label></div>
-                @Html.DropDownListFor(m => m.AssignedUserId, (IEnumerable<SelectListItem>)ViewBag.Users, "Choose...")
-            </div>
-            @Html.HiddenFor(m => m.ModuleId)
+            <p>hello</p>
         </fieldset>
     </div>
     <button type="submit" class="dnnPrimaryAction">@Dnn.LocalizeString("Submit")</button>

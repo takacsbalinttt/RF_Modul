@@ -10,18 +10,34 @@
 ' 
 */
 using System;
+using System.Collections.Generic;
 
 namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
 {
     public class Settings
     {
+        //Legacy Settings
+
+
         public bool MultiSelect { get; set; }
-        public DateTime Setting2 { get; set; }
 
         public string Bvin1 { get; set; }   
         
-        public int NumberOfItems { get; set; }   
+        public int NumberOfItems { get; set; }
 
-        public string culture { get; set; } 
+
+
+        public List<Card> cards { get; set; } = new List<Card>();
+
+
+        //New settings start from here
+
+
+        public string ModuleCulture { get; set; }
+
+        public List<Section> Sections { get; set; } = new List<Section>();
+
+        public int NumberOfSections { get; set; }
+
     }
 }

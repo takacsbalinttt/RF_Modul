@@ -1,6 +1,6 @@
 <dotnetnuke type="Package" version="5.0">
   <packages>
-    <package name="DNN.YounglingSlayer.WokPicker" type="Module" version="0.1.5">
+    <package name="DNN.YounglingSlayer.WokPicker" type="Module" version="0.2.0">
       <friendlyName>DNN.YounglingSlayer.WokPicker</friendlyName>
       <description>DNN.YounglingSlayer.WokPicker</description>
       <iconFile>~/Icons/Sigma/Software_32X32_Standard.png</iconFile>
@@ -21,13 +21,13 @@
             <basePath>DesktopModules\MVC\DNN.YounglingSlayer.WokPicker</basePath>
             <script type="Install">
               <path>Providers\DataProviders\SqlDataProvider</path>
-              <name>0.1.5.SqlDataProvider</name>
-              <version>0.1.5</version>
+              <name>0.2.0.SqlDataProvider</name>
+              <version>0.2.0</version>
             </script>
             <script type="UnInstall">
               <path>Providers\DataProviders\SqlDataProvider</path>
               <name>Uninstall.SqlDataProvider</name>
-              <version>0.1.5</version>
+              <version>0.2.0</version>
             </script>
           </scripts>
         </component>
@@ -47,7 +47,7 @@
             <supportedFeatures />
             <moduleDefinitions>
               <moduleDefinition>
-                <friendlyName>DNN.YounglingSlayer.WokPicker</friendlyName>
+                <friendlyName>WokPicker</friendlyName>
                 <defaultCacheTime>0</defaultCacheTime>
                 <moduleControls>
                   <moduleControl>
@@ -71,15 +71,38 @@
                     <viewOrder>0</viewOrder>
                     <supportsPopUps>True</supportsPopUps>
                   </moduleControl>
+					<moduleControl>
+						<controlKey>Section</controlKey>
+						<controlSrc>DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers/Settings/Section.mvc</controlSrc>
+						<supportsPartialRendering>False</supportsPartialRendering>
+						<controlTitle>Edit Section</controlTitle>
+						<controlType>Edit</controlType>
+						<iconFile />
+						<helpUrl />
+						<viewOrder>0</viewOrder>
+						<supportsPopUps>True</supportsPopUps>
+					</moduleControl>
+					<moduleControl>
+						<controlKey>CardSettings</controlKey>
+						<controlSrc>DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers/Settings/CardSettings.mvc</controlSrc>
+						<supportsPartialRendering>False</supportsPartialRendering>
+						<controlTitle>Edit Card</controlTitle>
+						<controlType>Edit</controlType>
+						<iconFile />
+						<helpUrl />
+						<viewOrder>0</viewOrder>
+						<supportsPopUps>True</supportsPopUps>
+					</moduleControl>
                   <moduleControl>
                     <controlKey>Settings</controlKey>
                     <controlSrc>DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers/Settings/Settings.mvc</controlSrc>
                     <supportsPartialRendering>False</supportsPartialRendering>
-                    <controlTitle>DNN.YounglingSlayer.WokPicker Settings</controlTitle>
+                    <controlTitle>Modul beállításai</controlTitle>
                     <controlType>Edit</controlType>
                     <iconFile />
                     <helpUrl />
                     <viewOrder>0</viewOrder>
+					<supportsPopUps>True</supportsPopUps>
                   </moduleControl>
                 </moduleControls>
               </moduleDefinition>

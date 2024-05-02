@@ -7,14 +7,16 @@
 <div class="License">
 	<h3>About WokSense Module</h3>
 	<p class="Owner">
-		<b>Version 0.1.0</b><br /><br />
+		<b>Version 0.2.0</b><br /><br />
 	</p>
 	<p>Changes:</p>
 	
 	<h4>New</h4>
 	<ul>
-			<li>Made the module read the db</li>
-			<li>ugly interface added</li>
+			<li> Made section and card creation possible</li>
+			<li> They are only available internally</li>
+			<li> Each has their own unique settings</li>
+			<li> Added a lot of new bugs</li>
 
 	</ul>
 	<h4>Removed</h4>
@@ -22,10 +24,10 @@
 			<li>All of my energy for the week</li>
 			<li>My will to live</li>
 			<li>A lot of my free time</li>
+			<li>My chance to pass statistics<li>
 	</ul>
-	<h4>Bugfixes<h4>
-		<ul>
-			<li>made it work with empty settings</li>
+	<h4>Bugs introduced<h4>
+	<ul>
+			<li>Saving impossible without hitting big blue update button on settings page</li>
 	</ul>
-	
 </div>

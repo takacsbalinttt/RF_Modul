@@ -1,0 +1,70 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models.Card>
+
+@using System.Collections.Generic
+@using DotNetNuke.Web.Mvc.Helpers
+@using DotNetNuke.Web.UI.WebControls
+
+
+        <h2 id="dnnSitePanel-BasicSettings" class="dnnFormSectionHead dnnClear">
+            <a href="#" class="dnnSectionExpanded">@Dnn.LocalizeString("BasicSettings")</a>
+        </h2>
+        <fieldset>
+            <p>hello</p>
+            <div class="dnnFormItem">
+                <div class="dnnLabel" style="position: relative;">
+                    @Html.LabelFor(m => Model.CardId, new { @class = "col-md-2 control-label" })
+                </div>
+                @Html.TextBoxFor(m => Model.CardId, new { @readonly = "readonly" })
+            </div>
+            <div class="dnnFormItem">
+                <div class="dnnLabel" style="position: relative;">
+                    @Html.LabelFor(m => Model.Section, new { @class = "col-md-2 control-label" })
+                </div>
+                @Html.TextBoxFor(m => Model.Section, new { @readonly = "readonly" })
+            </div>
+            <div class="dnnFormItem">
+                <div class="dnnLabel" style="position: relative;">
+                    @Html.LabelFor(m => Model.Bvin, new { @class = "col-md-2 control-label" })
+                </div>
+                @Html.TextBoxFor(m => Model.Bvin)
+            </div>
+            <div class="dnnFormItem">
+                <div class="dnnLabel" style="position: relative;">
+                    @Html.LabelFor(m => Model.NameOverride, new { @class = "col-md-2 control-label" })
+                </div>
+                @Html.CheckBoxFor(m => Model.NameOverride)
+            </div>
+            <div class="dnnFormItem">
+                <div class="dnnLabel" style="position: relative;">
+                    @Html.LabelFor(m => Model.NameOverrideText, new { @class = "col-md-2 control-label" })
+                </div>
+                @Html.TextBoxFor(m => Model.NameOverrideText)
+            </div>
+            <div class="dnnFormItem">
+                <div class="dnnLabel" style="position: relative;">
+                    @Html.LabelFor(m => Model.ImageOverride, new { @class = "col-md-2 control-label" })
+                </div>
+                @Html.CheckBoxFor(m => Model.ImageOverride)
+            </div>
+            <div class="dnnFormItem">
+                <div class="dnnLabel" style="position: relative;">
+                    @Html.LabelFor(m => Model.ImageOverrideFile, new { @class = "col-md-2 control-label" })
+                </div>
+                @Html.TextBoxFor(m => Model.ImageOverrideFile)
+            </div>
+            <div class="dnnFormItem">
+                <div class="dnnLabel" style="position: relative;">
+                    @Html.LabelFor(m => Model.Disable, new { @class = "col-md-2 control-label" })
+                </div>
+                @Html.CheckBoxFor(m => Model.Disable)
+            </div>
+            <div class="dnnFormItem">
+                <div class="dnnLabel" style="position: relative;">
+                    @Html.LabelFor(m => Model.Spicy, new { @class = "col-md-2 control-label" })
+                </div>
+                @Html.CheckBoxFor(m => Model.Spicy)
+            </div>
+
+        </fieldset>
+    <button type="submit" class="dnnPrimaryAction">@Dnn.LocalizeString("Submit")</button>
+    <a id="cancelEdit" href="#" class="dnnSecondaryAction">@Dnn.LocalizeString("Cancel")</a>
