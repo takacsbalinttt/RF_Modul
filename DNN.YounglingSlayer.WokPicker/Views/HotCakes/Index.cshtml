@@ -1,4 +1,4 @@
-﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<IEnumerable<DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models.HotCakes>>
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<IEnumerable<DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models.Section>>
 
 @using System.Text.RegularExpressions
 @using DotNetNuke.Web.Mvc.Helpers
@@ -7,7 +7,7 @@
 
 @{string selectedBvin = ViewBag.items.bvin;
 
-    var item = ViewBag.items;
+    var items = ViewBag.items;
 
 }
 
@@ -24,14 +24,14 @@
             Választott bvin: @selectedBvin
         </p>
 
-        if (item == null)
+        if (items == null)
         {
             <p>no cucc sry</p>
         }
         else
         {
-            var product_folder = @"\Portals\0\Hotcakes\Data\products\" + item.bvin + @"\";
-            var product_image = product_folder + item.ImageFileSmall;
+            var product_folder = @"\Portals\0\Hotcakes\Data\products\" + items.bvin + @"\";
+            var product_image = product_folder + items.ImageFileSmall;
             <p>@product_image</p>
 
             <div class="WokPicker_card">
@@ -43,10 +43,6 @@
                 </p>
 
             </div>
-        
-
-
-
             /*
             <p>
                 név: @ViewBag.ProductName
@@ -60,6 +56,56 @@
             </p>*/
     
         }
+
+        if(Model.Count() > 0)
+        {
+            foreach (var category in Model)
+            {
+                <h2>@category.Name</h2>
+                <div class="WokPicker_card_container">
+                    @foreach (var item in category.Cards)
+                    {
+                        if (item.ItemMissing == true)
+                        {
+                            <div class="WokPicker_card">
+                                <div class="WokPicker_Img">
+                                </div>
+                                <p class="WokPicker_card_title">
+                                    Hiányzik
+                                </p>
+
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="WokPicker_card">
+                                <div class="WokPicker_Img">
+                                    <img src=@item.Item.ImageFileSmall alt="teszt">
+                                </div>
+                                <p class="WokPicker_card_title">
+                                    if (item.NameOverride)
+                                    {
+                                        @item.NameOverrideText
+                                    }
+                                    else
+                                    {
+                                        @item.TranslatedName
+                                    }
+                                </p>
+
+                            </div>
+                        }
+
+                    }
+                </div>
+            }
+        }
+        else
+        {
+            <p>No cucc sry</p>
+        }
+
+
 
 
 

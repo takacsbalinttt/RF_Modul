@@ -32,13 +32,13 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             {
                 return View("NoSettings");
             }
-            var items = HotCakesManager.Instance.ReadHotCakes();
+            //var items = HotCakesManager.Instance.ReadHotCakes();
             var bvin1 = settings.GetValue<string>("DNN.YounglingSlayer.WokPicker_Bvin1").ToLower();
 
             ViewBag.items = FindBVIN(bvin1);
             ViewBag.ProductName = ProductTranslationsManager.Instance.TranslateNameByProductID(bvin1, "en-US");
 
-            var numberOfSections = settings.GetValue<int>("DNN.YounglingSlayer.WokPicker_NumberOfSections");
+            var numberOfSections = settings.GetValueOrDefault<int>("DNN.YounglingSlayer.WokPicker_NumberOfSections",1);
             ViewBag.numberOfSections = numberOfSections;
 
             List<Section> sections = new List<Section>();
@@ -49,7 +49,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             }
 
 
-            return View(item);
+            return View(sections);
         
         
         
@@ -66,11 +66,11 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
 
 
             section.Id = sectionId;
-            section.Name = settings.GetValue<string>(setting_key + "Name");
-            section.Description = settings.GetValue<string>(setting_key + "Description");
-            section.CardCount = settings.GetValue<int>(setting_key + "CardCount");
-            section.MultiSelect = settings.GetValue<bool>(setting_key + "MultiSelect");
-            section.Hide = settings.GetValue<bool>(setting_key + "Hide");
+            section.Name = settings.GetValueOrDefault<string>(setting_key + "Name",string.Empty);
+            section.Description = settings.GetValueOrDefault<string>(setting_key + "Description",string.Empty);
+            section.CardCount = settings.GetValueOrDefault<int>(setting_key + "CardCount",0);
+            section.MultiSelect = settings.GetValueOrDefault<bool>(setting_key + "MultiSelect",false);
+            section.Hide = settings.GetValueOrDefault<bool>(setting_key + "Hide",false);
 
             for (int i = 0; i < section.CardCount; i++)
             {
@@ -81,29 +81,43 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
 
         Card MakeCard(int sectionId, int cardId)
         {
+            //System.Diagnostics.Debugger.Launch();
             var settings = this.ActiveModule.ModuleSettings;
             var setting_key = "DNN.YounglingSlayer.WokPicker_Section" + sectionId + "_Card" + cardId + "_";
-            var culture = settings.GetValue<string>("DNN.YounglingSlayer.WokPicker_ModuleCulture");
+            var culture = ("en-US");
             Card card = new Card();
 
-            card.Item = FindBVIN(settings.GetValue<string>(setting_key + "Bvin").ToLower());
+            try
+            {
+                card.Item = FindBVIN(settings.GetValue<string>(setting_key + "Bvin").ToLower());
+            }
+            catch (System.ArgumentException)
+            {
+                card.Item = null;
+            }
             if (card.Item == null)
             {
-                card.Bvin = "missing";
+                card.ItemMissing = true;
                 return card;
             }
             else
             {
+                var product_folder = @"\Portals\0\Hotcakes\Data\products\" + card.Item.bvin + @"\";
                 card.CardId = cardId;
                 card.Section = sectionId;
                 card.Bvin = card.Item.bvin;
-                card.NameOverride = settings.GetValue<bool>(setting_key + "NameOverride");
-                card.NameOverrideText = settings.GetValue<string>(setting_key + "NameOverrideText");
-                card.ImageOverride = settings.GetValue<bool>(setting_key + "ImageOverride");
-                card.ImageOverrideFile = settings.GetValue<string>(setting_key + "ImageOverrideFile");
-                card.Disable = settings.GetValue<bool>(setting_key + "Disable");
-                card.Spicy = settings.GetValue<bool>(setting_key + "Spicy");
+                card.NameOverride = settings.GetValueOrDefault<bool>(setting_key + "NameOverride", false);
+                card.NameOverrideText = settings.GetValueOrDefault<string>(setting_key + "NameOverrideText", string.Empty);
+                card.ImageOverride = settings.GetValueOrDefault<bool>(setting_key + "ImageOverride", false);
+                card.ImageOverrideFile = settings.GetValueOrDefault<string>(setting_key + "ImageOverrideFile", string.Empty);
+                card.Disable = settings.GetValueOrDefault<bool>(setting_key + "Disable", false);
+                card.Spicy = settings.GetValueOrDefault<bool>(setting_key + "Spicy", false);
                 card.TranslatedName = ProductTranslationsManager.Instance.TranslateNameByProductID(card.Bvin, culture);
+
+                if (card.ImageOverride)
+                {
+                    card.Item.ImageFileSmall = product_folder + card.ImageOverrideFile;
+                }
 
                 return card;
 
@@ -112,9 +126,9 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
 
         HotCakes FindBVIN(string bvin)
         {
-            var item = HotCakesManager.Instance.GetBybvin(bvin);
-            
-            return item;
+                var item = HotCakesManager.Instance.GetBybvin(bvin);
+                return item;
+
         }
 
 
