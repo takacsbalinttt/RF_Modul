@@ -30,8 +30,8 @@
     {
      <div>
             <h2>@ViewBag.section_names[i]</h2>
-            <div id="sectionEdit">
-                <a href=@Url.Action("Section", "Settings", new {ctl = "Section", sectionId = i })> szerkesztés  @Dnn.LocalizeString("EditItem")</a>
+            <div class="WokPicker_settings_link">
+                <a  href=@Url.Action("Section", "Settings", new {ctl = "Section", sectionId = i })> szerkesztés  @Dnn.LocalizeString("EditItem")</a>
                 
             </div>
      </div>

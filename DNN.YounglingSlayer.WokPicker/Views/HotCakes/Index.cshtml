@@ -13,7 +13,15 @@
             foreach (var category in Model)
             {
                 <div class="WokPicker_section">
-                <h2>@category.Name</h2>
+                    @if (!(@category.Name == "nincs"))
+                    {
+                        <h2>@category.Name</h2>
+                    }
+                    @if (!(category.Description =="nincs"))
+                    {
+                        <p class="WokPicker_section_desc">@category.Description</p>
+                    }
+
                 <div class="WokPicker_card_container">
                     @foreach (var item in category.Cards)
                     {
