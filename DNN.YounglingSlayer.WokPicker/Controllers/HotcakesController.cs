@@ -8,6 +8,7 @@ using DotNetNuke.Framework.JavaScriptLibraries;
 using DotNetNuke.Web.Mvc.Framework.ActionFilters;
 using DotNetNuke.Web.Mvc.Framework.Controllers;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Configuration;
 using System.Runtime.InteropServices;
@@ -20,6 +21,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
     [DnnHandleError]
     public class HotcakesController : DnnController
     {
+
 
         [ModuleAction]
         public ActionResult Index()
@@ -35,7 +37,19 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
 
             ViewBag.items = FindBVIN(bvin1);
             ViewBag.ProductName = ProductTranslationsManager.Instance.TranslateNameByProductID(bvin1, "en-US");
-            return View(items);
+
+            var numberOfSections = settings.GetValue<int>("DNN.YounglingSlayer.WokPicker_NumberOfSections");
+            ViewBag.numberOfSections = numberOfSections;
+
+            List<Section> sections = new List<Section>();
+
+            for (int i = 0; i <= numberOfSections; i++)
+            {
+                sections.Add(MakeSection(i));
+            }
+
+
+            return View(item);
         
         
         
@@ -69,9 +83,10 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
         {
             var settings = this.ActiveModule.ModuleSettings;
             var setting_key = "DNN.YounglingSlayer.WokPicker_Section" + sectionId + "_Card" + cardId + "_";
+            var culture = settings.GetValue<string>("DNN.YounglingSlayer.WokPicker_ModuleCulture");
             Card card = new Card();
 
-            card.Item = FindBVIN(settings.GetValue<string>(setting_key + "Bvin"));
+            card.Item = FindBVIN(settings.GetValue<string>(setting_key + "Bvin").ToLower());
             if (card.Item == null)
             {
                 card.Bvin = "missing";
@@ -88,6 +103,8 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
                 card.ImageOverrideFile = settings.GetValue<string>(setting_key + "ImageOverrideFile");
                 card.Disable = settings.GetValue<bool>(setting_key + "Disable");
                 card.Spicy = settings.GetValue<bool>(setting_key + "Spicy");
+                card.TranslatedName = ProductTranslationsManager.Instance.TranslateNameByProductID(card.Bvin, culture);
+
                 return card;
 
             }

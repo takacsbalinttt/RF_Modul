@@ -36,8 +36,15 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
         /// <summary>
         /// The BVIN of the HotCakes Item the card displays
         /// </summary>
-
+        ///
         public string Bvin { get; set; }   
+
+
+        /// <summary>
+        /// Gets the proper name from HotCakes
+        /// </summary>
+        public string TranslatedName { get; set; }  
+
 
         /// <summary>
         /// Override the name of the item?
