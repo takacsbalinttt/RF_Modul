@@ -27,10 +27,24 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
         public int Section { get; set; }
 
         /// <summary>
-        /// The BVIN of the HotCakes Item the card displays
+        /// The HotCakes Item the card displays
         /// </summary>
 
+        public HotCakes Item { get; set; }
+
+
+        /// <summary>
+        /// The BVIN of the HotCakes Item the card displays
+        /// </summary>
+        ///
         public string Bvin { get; set; }   
+
+
+        /// <summary>
+        /// Gets the proper name from HotCakes
+        /// </summary>
+        public string TranslatedName { get; set; }  
+
 
         /// <summary>
         /// Override the name of the item?
@@ -65,5 +79,12 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
         /// </summary>
 
         public bool Spicy { get; set; }
+
+        /// <summary>
+        /// Is the item missing?
+        /// </summary>
+
+        public bool ItemMissing { get; set; }
+
     }
 }

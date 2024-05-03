@@ -1,68 +1,69 @@
-﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<IEnumerable<DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models.HotCakes>>
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<IEnumerable<DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models.Section>>
 
 @using System.Text.RegularExpressions
 @using DotNetNuke.Web.Mvc.Helpers
 @using System.Linq
 @using Dnn.Modules.Console
 
-@{string selectedBvin = ViewBag.items.bvin;
-
-    var item = ViewBag.items;
-
-}
-
 
 <div id="Items-@Dnn.ModuleContext.ModuleId">
-    @if (Model == null)
-    {
-        <p>@Dnn.LocalizeString("NoItems")</p>
-    }
-    else
-    { 
-        <h2>HotCakes elemek sikeresen beolvasva!</h2>
-        <p>
-            Választott bvin: @selectedBvin
-        </p>
 
-        if (item == null)
+        @if(Model.Count() > 0)
         {
-            <p>no cucc sry</p>
+            foreach (var category in Model)
+            {
+                <div class="WokPicker_section">
+                    @if (!(@category.Name == "nincs"))
+                    {
+                        <h2>@category.Name</h2>
+                    }
+                    @if (!(category.Description =="nincs"))
+                    {
+                        <p class="WokPicker_section_desc">@category.Description</p>
+                    }
+
+                <div class="WokPicker_card_container">
+                    @foreach (var item in category.Cards)
+                    {
+                        if (item.ItemMissing == true)
+                        {
+                            <div class="WokPicker_card">
+                                <div class="WokPicker_Img">
+                                </div>
+                                <p class="WokPicker_card_title">
+                                    Hiányzik
+                                </p>
+
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="WokPicker_card">
+                                <div class="WokPicker_Img">
+                                    <img src=@item.Item.ImageFileSmall alt="teszt">
+                                </div>
+                                <p class="WokPicker_card_title">
+                                    @if (item.NameOverride)
+                                    {
+                                        @item.NameOverrideText
+                                    }
+                                    else
+                                    {
+                                        @item.TranslatedName
+                                    }
+                                </p>
+
+                            </div>
+                        }
+
+                    }
+                </div>
+            </div>
+            }
         }
         else
         {
-            var product_folder = @"\Portals\0\Hotcakes\Data\products\" + item.bvin + @"\";
-            var product_image = product_folder + item.ImageFileSmall;
-            <p>@product_image</p>
-
-            <div class="WokPicker_card">
-                <div class="WokPicker_Img">
-                    <img src=@product_image alt=" teszt">
-                </div>
-                <p class="WokPicker_card_title">
-                    @ViewBag.ProductName
-                </p>
-
-            </div>
-
-
-
-            /*
-            <p>
-                név: @ViewBag.ProductName
-
-                <br>
-                SKU: @item.SKU
-                <br>
-                <img src=@product_image alt=" teszt">
-                <br>
-                Raktáron: @item.OutOfStockMode
-            </p>*/
-    
+            <p>No cucc sry</p>
         }
 
-
-
-
-
-    }
 </div>
