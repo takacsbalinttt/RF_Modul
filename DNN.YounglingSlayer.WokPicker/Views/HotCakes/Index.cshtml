@@ -27,7 +27,7 @@
                         <p class="WokPicker_section_desc">@category.Description</p>
                     }
 
-                <div id="@("Section" + category.Id)" class="WokPicker_card_container  @(category.MultiSelect ? "SingleSelect" : "")">
+                <div id="@("Section" + category.Id)" class="WokPicker_card_container  @(category.MultiSelect ? "MultiSelect" : "SingleSelect")">
                     @foreach (var item in category.Cards)
                     {
                         cardNum = cardNum + 1;
@@ -74,3 +74,36 @@
         }
 
 </div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const singleSelects = document.querySelectorAll(".SingleSelect");
+        const multiSelects = document.querySelectorAll(".MultiSelect");
+
+        singleSelects.forEach(container => {
+            container.addEventListener("click", function (event) {
+
+                if (!event.target.classList.contains("WokPicker_card")) return;
+
+
+                const wokPickerCards = container.querySelectorAll(".WokPicker_card");
+                wokPickerCards.forEach(card => card.classList.remove("selected"));
+
+                event.target.classList.add("selected");
+            });
+        });
+
+
+        multiSelects.forEach(container => {
+            container.addEventListener("click", function (event) {
+                if (!event.target.classList.contains("WokPicker_card")) return;
+
+
+                event.target.classList.toggle("selected");
+            });
+        });
+    });
+
+
+</script>
