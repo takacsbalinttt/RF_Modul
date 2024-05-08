@@ -105,7 +105,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             {
                 var product_folder = @"\Portals\0\Hotcakes\Data\products\" + card.Item.bvin + @"\";
                 var override_folder = @"\Portals\0\WokPicker\img\";
-                card.CardId = cardId;
+                card.CardId = sectionId * 100 + cardId;
                 card.Section = sectionId;
                 card.Bvin = card.Item.bvin;
                 card.NameOverride = settings.GetValueOrDefault<bool>(setting_key + "NameOverride", false);
