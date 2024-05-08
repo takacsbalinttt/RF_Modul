@@ -92,7 +92,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             {
                 card.Item = FindBVIN(settings.GetValue<string>(setting_key + "Bvin").ToLower());
             }
-            catch (System.ArgumentException)
+            catch 
             {
                 card.Item = null;
             }
