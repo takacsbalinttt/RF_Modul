@@ -43,6 +43,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             ViewBag.numberOfSections = numberOfSections;
 
             List<Section> sections = new List<Section>();
+            //System.Diagnostics.Debugger.Launch();
 
             for (int i = 0; i < numberOfSections; i++)
             {
@@ -73,7 +74,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             section.MultiSelect = settings.GetValueOrDefault<bool>(setting_key + "MultiSelect",false);
             section.Hide = settings.GetValueOrDefault<bool>(setting_key + "Hide",false);
 
-            for (int i = 1; i < section.CardCount+1; i++)
+            for (int i = 0; i < section.CardCount; i++)
             {
                 section.Cards.Add(MakeCard(sectionId, i));
             }
@@ -86,7 +87,6 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             var setting_key = "WokPicker_Section" + sectionId + "_Card" + cardId + "_";
             var culture = ("en-US");
             Card card = new Card();
-            card.CardId = sectionId * 100 + cardId;
             card.Section = sectionId;
 
             try

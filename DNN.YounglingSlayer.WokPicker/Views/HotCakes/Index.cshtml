@@ -5,6 +5,10 @@
 @using System.Linq
 @using Dnn.Modules.Console
 
+@{ 
+    var cardNum = 0;
+}
+
 
 <div id="Items-@Dnn.ModuleContext.ModuleId">
 
@@ -12,19 +16,21 @@
         {
             foreach (var category in Model)
             {
+                cardNum = 0;
                 <div class="WokPicker_section">
                     @if (!(@category.Name == "nincs"))
                     {
                         <h2>@category.Name</h2>
                     }
-                    @if (!(category.Description =="nincs"))
+                    @if (!(category.Description == "nincs"))
                     {
                         <p class="WokPicker_section_desc">@category.Description</p>
                     }
 
-                <div class="WokPicker_card_container">
+                <div id="@("Section" + category.Id)" class="WokPicker_card_container  @(category.MultiSelect ? "SingleSelect" : "")">
                     @foreach (var item in category.Cards)
                     {
+                        cardNum = cardNum + 1;
                         if (item.ItemMissing == true)
                         {
                             <div class="WokPicker_card">
@@ -38,7 +44,7 @@
                         }
                         else
                         {
-                            <div class="WokPicker_card">
+                            <div id="@("WokPicker_Card_"  + (category.Id * 100 + cardNum).ToString())"      class="WokPicker_card">
                                 <div class="WokPicker_Img">
                                     <img src=@item.Item.ImageFileSmall alt="teszt">
                                 </div>
@@ -55,6 +61,7 @@
 
                             </div>
                         }
+                        
 
                     }
                 </div>
