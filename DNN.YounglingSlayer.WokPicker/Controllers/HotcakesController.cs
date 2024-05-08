@@ -44,7 +44,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
 
             List<Section> sections = new List<Section>();
 
-            for (int i = 0; i <= numberOfSections; i++)
+            for (int i = 0; i < numberOfSections; i++)
             {
                 sections.Add(MakeSection(i));
             }
@@ -73,7 +73,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             section.MultiSelect = settings.GetValueOrDefault<bool>(setting_key + "MultiSelect",false);
             section.Hide = settings.GetValueOrDefault<bool>(setting_key + "Hide",false);
 
-            for (int i = 0; i < section.CardCount; i++)
+            for (int i = 1; i < section.CardCount+1; i++)
             {
                 section.Cards.Add(MakeCard(sectionId, i));
             }
@@ -82,11 +82,12 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
 
         Card MakeCard(int sectionId, int cardId)
         {
-            //System.Diagnostics.Debugger.Launch();
             var settings = this.ActiveModule.ModuleSettings;
             var setting_key = "WokPicker_Section" + sectionId + "_Card" + cardId + "_";
             var culture = ("en-US");
             Card card = new Card();
+            card.CardId = sectionId * 100 + cardId;
+            card.Section = sectionId;
 
             try
             {
@@ -105,8 +106,6 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             {
                 var product_folder = @"\Portals\0\Hotcakes\Data\products\" + card.Item.bvin + @"\";
                 var override_folder = @"\Portals\0\WokPicker\img\";
-                card.CardId = sectionId * 100 + cardId;
-                card.Section = sectionId;
                 card.Bvin = card.Item.bvin;
                 card.NameOverride = settings.GetValueOrDefault<bool>(setting_key + "NameOverride", false);
                 card.NameOverrideText = settings.GetValueOrDefault<string>(setting_key + "NameOverrideText", string.Empty);
