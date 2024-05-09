@@ -18,6 +18,14 @@ div.WokPicker_card {
     transition: all 0.3s ease;
 }
 
+div.WokPicker_card.disabled{
+    fill: #3e3d3d;
+    background-color: #3e3d3d;
+
+}
+
+
+
 
     div.WokPicker_card.selected {
         box-shadow: inset 0 0 0px 8px #FFE81F;
@@ -42,16 +50,16 @@ div.WokPicker_Img {
 }
 
 
-    div.WokPicker_Img img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        padding: 0 !important;
-        padding-right: 0 !important;
-        border-radius: 16px;
-        user-select: none;
-        pointer-events: none;
-    }
+div.WokPicker_Img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    padding: 0 !important;
+    padding-right: 0 !important;
+    border-radius: 16px;
+    user-select: none;
+    pointer-events: none;
+}
 
 p.WokPicker_card_title{
     font-size: 1rem;
