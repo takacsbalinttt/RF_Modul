@@ -44,10 +44,10 @@
                         }
                         else
                         {
-                            <div id="@("WokPicker_Card_"  + (category.Id * 100 + cardNum).ToString())"      class="WokPicker_card">
-                                <div class="WokPicker_Img">
+                            <div id="@("WokPicker_Card_"  + (category.Id * 100 + cardNum).ToString())"      class="WokPicker_card @(item.Disable ? "disabled" : "")">
+                                <div class="WokPicker_Img" @*style="background: url("@item.Item.ImageFileSmall")"*@>
                                     <img src=@item.Item.ImageFileSmall alt="teszt">
-                                </div>
+                                </div>  
                                 <p class="WokPicker_card_title">
                                     @if (item.NameOverride)
                                     {
