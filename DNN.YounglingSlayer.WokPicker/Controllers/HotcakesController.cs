@@ -138,11 +138,37 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
         }
 
 
+        [HttpPost]
+        [ValidateInput(false)]
+        [DotNetNuke.Web.Mvc.Framework.ActionFilters.ValidateAntiForgeryToken]
+
+        public ActionResult Index(List<Section> sections)
+        {
+            System.Diagnostics.Debugger.Launch();
+            List<string> teszt = new List<string>();
+
+            foreach (var section in sections)
+            {
+                foreach (var card in section.Cards)
+                {
+                    if(card.Selected == true)
+                    {
+                        teszt.Add(card.TranslatedName);
+                    }
+                }
+            }
+
+
+
+
+            return  RedirectToDefaultRoute();
+        }
+
+
+
+
 
     }
-
-
-
 
 
 

@@ -7,6 +7,7 @@
 
 @{ 
     var cardNum = 0;
+    var categoryNum = 0;
 }
 
 
@@ -58,7 +59,11 @@
                                         @item.TranslatedName
                                     }
                                 </p>
-                                @Html.HiddenFor(m => item.Selected);
+                                @{
+                                }
+
+                                @Html.HiddenFor(modelItem => Model.ElementAt(categoryNum).Cards.ElementAt(cardNum - 1).Bvin);
+                                @Html.HiddenFor(modelItem => Model.ElementAt(categoryNum).Cards.ElementAt(cardNum - 1).Selected, new {@class = "hiddenSelectorModel"});
 
                             </div>
                         }
@@ -67,6 +72,7 @@
                     }
                 </div>
             </div>
+                categoryNum = categoryNum + 1;
             }
         }
         else
@@ -91,13 +97,13 @@
                 const wokPickerCards = container.querySelectorAll(".WokPicker_card");
                 wokPickerCards.forEach(card => card.classList.remove("selected"));
                 wokPickerCards.forEach(card => {
-                    card.querySelectorAll("input[type=hidden]").forEach(input => {
+                    card.querySelectorAll("input[class=hiddenSelectorModel]").forEach(input => {
                         input.value = "false";
                     });
                 });
 
                 event.target.classList.add("selected");
-                event.target.querySelectorAll("input[type=hidden]").forEach(input => {
+                event.target.querySelectorAll("input[class=hiddenSelectorModel]").forEach(input => {
                     input.value = "true";
                 });
                 
@@ -113,13 +119,13 @@
                 event.target.classList.toggle("selected");
                 if(event.target.classList.contains("selected"))
                 {
-                    event.target.querySelectorAll("input[type=hidden]").forEach(input => {
+                    event.target.querySelectorAll("input[class=hiddenSelectorModel]").forEach(input => {
                         input.value = "true";
                     });
                 }
                 else
                 {
-                    event.target.querySelectorAll("input[type=hidden]").forEach(input => {
+                    event.target.querySelectorAll("input[class=hiddenSelectorModel]").forEach(input => {
                         input.value = "false";
                     });
                 }
