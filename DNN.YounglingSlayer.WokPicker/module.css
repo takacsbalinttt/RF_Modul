@@ -24,6 +24,11 @@ div.WokPicker_card.disabled{
 
 }
 
+    div.WokPicker_card p {
+        user-select: none;
+        pointer-events: none;
+    }
+
 
 
 

@@ -158,7 +158,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
 
         public ActionResult WokPicker(IEnumerable<Section> Sections)
         {
-            System.Diagnostics.Debugger.Launch();
+
             List<string> teszt = new List<string>();
 
             foreach (var section in Sections)
