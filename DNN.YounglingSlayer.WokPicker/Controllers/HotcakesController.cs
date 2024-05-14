@@ -26,9 +26,14 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
         [ModuleAction]
         public ActionResult Index()
         {
+            return View();
+        }
+
+        public ActionResult WokPicker()
+        {
             var settings = this.ActiveModule.ModuleSettings;
 
-            if(settings.Count == 0)
+            if (settings.Count == 0)
             {
                 return View("NoSettings");
             }
@@ -39,7 +44,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             ViewBag.items = FindBVIN(bvin1);
             ViewBag.ProductName = ProductTranslationsManager.Instance.TranslateNameByProductID(bvin1, "en-US");
             */
-            var numberOfSections = settings.GetValueOrDefault<int>("WokPicker_NumberOfSections",1);
+            var numberOfSections = settings.GetValueOrDefault<int>("WokPicker_NumberOfSections", 1);
             ViewBag.numberOfSections = numberOfSections;
 
             List<Section> sections = new List<Section>();
@@ -52,11 +57,10 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
 
 
             return View(sections);
-        
-        
-        
-        
-        }
+        }   
+
+
+
 
 
 
@@ -142,7 +146,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
         [ValidateInput(false)]
         [DotNetNuke.Web.Mvc.Framework.ActionFilters.ValidateAntiForgeryToken]
 
-        public ActionResult Index(List<Section> sections)
+        public ActionResult WokPicker(List<Section> sections)
         {
             System.Diagnostics.Debugger.Launch();
             List<string> teszt = new List<string>();
