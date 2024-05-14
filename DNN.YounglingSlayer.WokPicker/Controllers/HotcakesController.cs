@@ -23,14 +23,31 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
     {
 
 
-        [ModuleAction]
+        [HttpGet]
         public ActionResult Index()
         {
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Index(bool test = true)
+        {
+            if (ViewBag.proceed)
+            {
+                return Redirect(Url.Action("WokPicker", "Hotcakes"));
+            }
+            else
+            {
+                return Redirect(Url.Action("WokPicker", "Hotcakes"));
+            }
+
+        }
+
+        [HttpGet]
+
         public ActionResult WokPicker()
         {
+
             var settings = this.ActiveModule.ModuleSettings;
 
             if (settings.Count == 0)
@@ -148,7 +165,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
 
         public ActionResult WokPicker(List<Section> sections)
         {
-            System.Diagnostics.Debugger.Launch();
+            //System.Diagnostics.Debugger.Launch();
             List<string> teszt = new List<string>();
 
             foreach (var section in sections)

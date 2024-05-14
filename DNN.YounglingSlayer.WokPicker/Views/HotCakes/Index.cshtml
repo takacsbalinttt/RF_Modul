@@ -1,4 +1,4 @@
-﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<IEnumerable<DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models.Section>>
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<IEnumerable<DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models.Settings>>
 
 @using System.Text.RegularExpressions
 @using DotNetNuke.Web.Mvc.Helpers
@@ -13,9 +13,30 @@
     </h1>
 
 
-    <button class="btn btn-primary" onclick=@Url.Action("WokPicker", "HotCakes")>Indítás</button>
-    <button class="btn btn-secondary">Tudnivalók</button>
+    <button class="btn btn-primary" onclick=@Url.Action("Index", "Hotcakes")>Indítás</button>
+    <button class="btn btn-secondary" onclick=@Url.Action("Index", "Hotcakes")>Tudnivalók</button>
 
 </div>
 
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const primaryButton = document.querySelector(".btn-primary");
+        const secondaryButton = document.querySelector(".btn-secondary");
+
+        primaryButton.addEventListener("click", function () {
+            @{ 
+               ViewBag.proceed = true;
+            }
+        });
+
+        secondaryButton.addEventListener("click", function () {
+            @{
+                ViewBag.proceed = false;
+            }
+        });
+    });
+
+
+
+</script>
