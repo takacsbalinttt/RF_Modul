@@ -156,20 +156,20 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
         [ValidateInput(false)]
         [DotNetNuke.Web.Mvc.Framework.ActionFilters.ValidateAntiForgeryToken]
 
-        public ActionResult WokPicker(List<Section> sections)
+        public ActionResult WokPicker(IEnumerable<Section> Sections)
         {
-            //System.Diagnostics.Debugger.Launch();
+            System.Diagnostics.Debugger.Launch();
             List<string> teszt = new List<string>();
 
-            foreach (var section in sections)
+            foreach (var section in Sections)
             {
-                foreach (var card in section.Cards)
-                {
-                    if(card.Selected == true)
-                    {
-                        teszt.Add(card.TranslatedName);
-                    }
-                }
+                //foreach (var card in section.Cards)
+                //{
+                //    if(card.Selected == true)
+                //    {
+                //        teszt.Add(card.TranslatedName);
+                //    }
+                //}
             }
 
 
