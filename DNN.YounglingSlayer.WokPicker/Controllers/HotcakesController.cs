@@ -28,20 +28,13 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
         {
             return View();
         }
-
-        [HttpPost]
-        public ActionResult Index(bool test = true)
+        
+        [HttpGet]
+        public ActionResult Info()
         {
-            if (ViewBag.proceed)
-            {
-                return Redirect(Url.Action("WokPicker", "Hotcakes"));
-            }
-            else
-            {
-                return Redirect(Url.Action("WokPicker", "Hotcakes"));
-            }
-
+            return View();
         }
+
 
         [HttpGet]
 

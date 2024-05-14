@@ -180,6 +180,7 @@
     <Content Include="Views\Settings\Section.cshtml" />
     <Content Include="Views\Settings\CardSettings.cshtml" />
     <Content Include="Views\HotCakes\WokPicker.cshtml" />
+    <Content Include="Views\HotCakes\Info.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
