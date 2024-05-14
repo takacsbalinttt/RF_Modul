@@ -60,10 +60,11 @@
                                     }
                                 </p>
                                 @{
+                                    var bvinName = "Model["+categoryNum+"].Cards["+ (cardNum - 1) +"].Bvin";
+                                    var selectedName = "Model["+categoryNum+"].Cards["+ (cardNum - 1)+"].Selected";
                                 }
-
-                                @Html.HiddenFor(modelItem => Model.ElementAt(categoryNum).Cards.ElementAt(cardNum - 1).Bvin);
-                                @Html.HiddenFor(modelItem => Model.ElementAt(categoryNum).Cards.ElementAt(cardNum - 1).Selected, new {@class = "hiddenSelectorModel"});
+                                @Html.Hidden(bvinName, Model.ElementAt(categoryNum).Cards.ElementAt(cardNum - 1).Bvin)
+                                @Html.Hidden(selectedName, Model.ElementAt(categoryNum).Cards.ElementAt(cardNum - 1).Selected, new {@class = "hiddenSelectorModel" })
 
                             </div>
                         }
@@ -79,7 +80,7 @@
         {
             <p>No cucc sry</p>
         }
-   @*<button type="submit" class="dnnPrimaryAction">Beküldés</button>*@
+@*<button class="btn btn-primary" id="submit" onclick=@Url.Action("Index", "HotCakes", new {sections= @Model})> Rendelés leadása</button>*@
 </div>
 
 
@@ -91,7 +92,8 @@
         singleSelects.forEach(container => {
             container.addEventListener("click", function (event) {
 
-                if (!event.target.classList.contains("WokPicker_card")) return;
+                const clickedCard = event.target.closest(".WokPicker_card");
+                if (!clickedCard) return;
 
 
                 const wokPickerCards = container.querySelectorAll(".WokPicker_card");
@@ -102,8 +104,8 @@
                     });
                 });
 
-                event.target.classList.add("selected");
-                event.target.querySelectorAll("input[class=hiddenSelectorModel]").forEach(input => {
+                clickedCard.classList.add("selected");
+                clickedCard.querySelectorAll("input[class=hiddenSelectorModel]").forEach(input => {
                     input.value = "true";
                 });
                 
@@ -113,19 +115,19 @@
 
         multiSelects.forEach(container => {
             container.addEventListener("click", function (event) {
-                if (!event.target.classList.contains("WokPicker_card")) return;
+                const clickedCard = event.target.closest(".WokPicker_card");
+                if (!clickedCard) return;
 
-
-                event.target.classList.toggle("selected");
-                if(event.target.classList.contains("selected"))
+                clickedCard.classList.toggle("selected");
+                if (clickedCard.classList.contains("selected"))
                 {
-                    event.target.querySelectorAll("input[class=hiddenSelectorModel]").forEach(input => {
+                    clickedCard.querySelectorAll("input[class=hiddenSelectorModel]").forEach(input => {
                         input.value = "true";
                     });
                 }
                 else
                 {
-                    event.target.querySelectorAll("input[class=hiddenSelectorModel]").forEach(input => {
+                    clickedCard.querySelectorAll("input[class=hiddenSelectorModel]").forEach(input => {
                         input.value = "false";
                     });
                 }
