@@ -152,7 +152,6 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        [DotNetNuke.Web.Mvc.Framework.ActionFilters.ValidateAntiForgeryToken]
 
         public ActionResult WokPicker(IEnumerable<Section> Sections)
         {
