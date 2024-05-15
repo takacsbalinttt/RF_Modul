@@ -9,18 +9,29 @@
 <div id="Items-@Dnn.ModuleContext.ModuleId" class="WokPicker_MainDiv">
 
 
-    <div class="WokPicker_card_container">
+    <div class="WokPicker_card_TextPage finish">
+        <h1>
+            Kész az étel!
+        </h1>
         <h2>
-            vége
+            Az alábbi termékeket választottad:
         </h2>
     </div>
+    <div class="WokPicker_card_container">
+        @foreach (var item in Model)
+        {
+            <div class="WokPicker_card">
+                <div class="WokPicker_Img">
+                    <img class="main" src=@item.Item.ImageFileSmall alt="teszt">
+                    <img class="spicy" @(item.Spicy ? "" : "hidden") src="Content/spicy.png" alt="Alternate Text" />
+                </div>
+                <p class="WokPicker_card_title">
+                    @item.TranslatedName
+                </p>
 
-    @foreach (var item in Model)
-    {
-        <p>
-            @item.TranslatedName
-        </p>
-    }
+            </div>
+        }
+    </div>
 
     <div class="WokPicker_navbuttons">
         <a class="btn btn-primary" href=@Url.Action("WokPicker", "Hotcakes")>Indítás</a>

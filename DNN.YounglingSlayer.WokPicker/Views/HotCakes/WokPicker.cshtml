@@ -51,6 +51,8 @@
                                 var selectedName = "Sections[" + categoryNum + "].Cards[" + (cardNum - 1) + "].Selected";
                                 var cardName = "Sections[" + categoryNum + "].Cards[" + (cardNum - 1) + "].TranslatedName";
                                 var priceName = "Sections[" + categoryNum + "].Cards[" + (cardNum - 1) + "].Item.SitePrice";
+                                var spicyName = "Sections[" + categoryNum + "].Cards[" + (cardNum - 1) + "].Spicy";
+                                var imagefileName = "Sections[" + categoryNum + "].Cards[" + (cardNum - 1) + "].Item.ImageFileSmall";
 
                             
                             <div id="@("WokPicker_Card_"  + (category.Id * 100 + cardNum).ToString())" class="WokPicker_card @(item.Disable ? "disabled" : "")">
@@ -73,6 +75,8 @@
                                 @Html.Hidden(bvinName, Model.ElementAt(categoryNum).Cards.ElementAt(cardNum - 1).Bvin)
                                 @Html.Hidden(priceName, Model.ElementAt(categoryNum).Cards.ElementAt(cardNum - 1).Item.SitePrice)
                                 @Html.Hidden(selectedName, Model.ElementAt(categoryNum).Cards.ElementAt(cardNum - 1).Selected, new { @class = "hiddenSelectorModel" })
+                                @Html.Hidden(spicyName, Model.ElementAt(categoryNum).Cards.ElementAt(cardNum - 1).Spicy)
+                                @Html.Hidden(imagefileName, Model.ElementAt(categoryNum).Cards.ElementAt(cardNum - 1).Item.ImageFileSmall)
 
                             </div>
                         }
