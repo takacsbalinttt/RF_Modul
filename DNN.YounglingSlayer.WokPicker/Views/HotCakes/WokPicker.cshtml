@@ -50,10 +50,13 @@
                                 var bvinName = "Sections[" + categoryNum + "].Cards[" + (cardNum - 1) + "].Bvin";
                                 var selectedName = "Sections[" + categoryNum + "].Cards[" + (cardNum - 1) + "].Selected";
                                 var cardName = "Sections[" + categoryNum + "].Cards[" + (cardNum - 1) + "].TranslatedName";
+                                var priceName = "Sections[" + categoryNum + "].Cards[" + (cardNum - 1) + "].Item.SitePrice";
+
                             
                             <div id="@("WokPicker_Card_"  + (category.Id * 100 + cardNum).ToString())" class="WokPicker_card @(item.Disable ? "disabled" : "")">
                                 <div class="WokPicker_Img">
-                                    <img src=@item.Item.ImageFileSmall alt="teszt">
+                                    <img class="main" src=@item.Item.ImageFileSmall alt="teszt">
+                                    <img class="spicy" @(item.Spicy ? "" : "hidden") src="Content/spicy.png" alt="Alternate Text" />
                                 </div>
                                 <p class="WokPicker_card_title">
                                     @if (item.NameOverride)
@@ -68,6 +71,7 @@
                                     }
                                 </p>
                                 @Html.Hidden(bvinName, Model.ElementAt(categoryNum).Cards.ElementAt(cardNum - 1).Bvin)
+                                @Html.Hidden(priceName, Model.ElementAt(categoryNum).Cards.ElementAt(cardNum - 1).Item.SitePrice)
                                 @Html.Hidden(selectedName, Model.ElementAt(categoryNum).Cards.ElementAt(cardNum - 1).Selected, new { @class = "hiddenSelectorModel" })
 
                             </div>
@@ -100,6 +104,7 @@
 
                 const clickedCard = event.target.closest(".WokPicker_card");
                 if (!clickedCard) return;
+                if (clickedCard.classList.contains("disabled")) return;
 
 
                 const wokPickerCards = container.querySelectorAll(".WokPicker_card");
@@ -123,6 +128,7 @@
             container.addEventListener("click", function (event) {
                 const clickedCard = event.target.closest(".WokPicker_card");
                 if (!clickedCard) return;
+                if (clickedCard.classList.contains("disabled")) return;
 
                 clickedCard.classList.toggle("selected");
                 if (clickedCard.classList.contains("selected"))

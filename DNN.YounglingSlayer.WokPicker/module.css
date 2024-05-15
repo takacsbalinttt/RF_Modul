@@ -18,11 +18,15 @@ div.WokPicker_card {
     transition: all 0.3s ease;
 }
 
-div.WokPicker_card.disabled{
-    fill: #3e3d3d;
-    background-color: #3e3d3d;
-
+div.WokPicker_card.disabled {
+    fill: #c0bfbf;
+    background-color: #c0bfbf;
 }
+div.WokPicker_card.disabled img {
+    filter: grayscale(100%);
+}
+
+
 
     div.WokPicker_card p {
         user-select: none;
@@ -51,11 +55,12 @@ div.WokPicker_Img {
     margin-left: 16px;
     margin-bottom: 16px;
     margin-right: 16px;
-
+    user-select: none;
+    pointer-events: none;
 }
 
 
-div.WokPicker_Img img {
+div.WokPicker_Img img.main {
     width: 100%;
     height: 100%;
     object-fit: cover;

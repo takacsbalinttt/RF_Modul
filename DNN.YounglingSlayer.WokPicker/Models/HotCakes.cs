@@ -41,6 +41,10 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
         /// </summary>
         public int OutOfStockMode { get; set; }
         
+        /// <summary>
+        /// The price of the item
+        /// </summary>
+        public float SitePrice { get; set; }    
 
         public int StoreID { get; set; }
  
