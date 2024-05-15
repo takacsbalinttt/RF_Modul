@@ -6,18 +6,18 @@
 @using Dnn.Modules.Console
 
 
-<div id="Items-@Dnn.ModuleContext.ModuleId">
+<div id="Items-@Dnn.ModuleContext.ModuleId" class="WokPicker_MainDiv">
 
-    <h1>
+    <h1 class="WokPicker_title">
         Modul tudnivalók
     </h1>
     <h2>
         Ide jöhet pár hasznos tudnivaló a modul használatával kapcsolatban.
     </h2>
 
-
-    <a class="btn btn-primary" href=@Url.Action("WokPicker", "Hotcakes")>Indítás</a>
-    <a class="btn btn-secondary" href=@Url.Action("Index", "Hotcakes")>Vissza</a>
-
+    <div class="WokPicker_navbuttons">
+        <a class="btn btn-primary" href=@Url.Action("WokPicker", "Hotcakes")>Indítás</a>
+        <a class="btn btn-secondary" href=@Url.Action("Index", "Hotcakes")>Vissza</a>
+    </div>
 </div>
 
