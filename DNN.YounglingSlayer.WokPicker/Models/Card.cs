@@ -86,5 +86,8 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
 
         public bool ItemMissing { get; set; }
 
+
+        public bool Selected { get; set; }
+
     }
 }

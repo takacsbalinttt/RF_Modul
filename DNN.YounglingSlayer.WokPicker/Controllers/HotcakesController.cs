@@ -43,8 +43,9 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             ViewBag.numberOfSections = numberOfSections;
 
             List<Section> sections = new List<Section>();
+            //System.Diagnostics.Debugger.Launch();
 
-            for (int i = 0; i <= numberOfSections; i++)
+            for (int i = 0; i < numberOfSections; i++)
             {
                 sections.Add(MakeSection(i));
             }
@@ -82,17 +83,17 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
 
         Card MakeCard(int sectionId, int cardId)
         {
-            //System.Diagnostics.Debugger.Launch();
             var settings = this.ActiveModule.ModuleSettings;
             var setting_key = "WokPicker_Section" + sectionId + "_Card" + cardId + "_";
             var culture = ("en-US");
             Card card = new Card();
+            card.Section = sectionId;
 
             try
             {
                 card.Item = FindBVIN(settings.GetValue<string>(setting_key + "Bvin").ToLower());
             }
-            catch (System.ArgumentException)
+            catch 
             {
                 card.Item = null;
             }
@@ -105,8 +106,6 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             {
                 var product_folder = @"\Portals\0\Hotcakes\Data\products\" + card.Item.bvin + @"\";
                 var override_folder = @"\Portals\0\WokPicker\img\";
-                card.CardId = cardId;
-                card.Section = sectionId;
                 card.Bvin = card.Item.bvin;
                 card.NameOverride = settings.GetValueOrDefault<bool>(setting_key + "NameOverride", false);
                 card.NameOverrideText = settings.GetValueOrDefault<string>(setting_key + "NameOverrideText", string.Empty);
@@ -139,11 +138,37 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
         }
 
 
+        [HttpPost]
+        [ValidateInput(false)]
+        [DotNetNuke.Web.Mvc.Framework.ActionFilters.ValidateAntiForgeryToken]
+
+        public ActionResult Index(List<Section> sections)
+        {
+            System.Diagnostics.Debugger.Launch();
+            List<string> teszt = new List<string>();
+
+            foreach (var section in sections)
+            {
+                foreach (var card in section.Cards)
+                {
+                    if(card.Selected == true)
+                    {
+                        teszt.Add(card.TranslatedName);
+                    }
+                }
+            }
+
+
+
+
+            return  RedirectToDefaultRoute();
+        }
+
+
+
+
 
     }
-
-
-
 
 
 
