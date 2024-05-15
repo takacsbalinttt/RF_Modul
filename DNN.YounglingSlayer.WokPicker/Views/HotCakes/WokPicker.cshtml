@@ -29,50 +29,53 @@
                         <p class="WokPicker_section_desc">@category.Description</p>
                     }
 
-                    <div id="@("Section" + category.Id)" class="WokPicker_card_container  @(category.MultiSelect ? "MultiSelect" : "SingleSelect")">
-                        @foreach (var item in category.Cards)
+                <div id="@("Section" + category.Id)" class="WokPicker_card_container  @(category.MultiSelect ? "MultiSelect" : "SingleSelect")">
+                    @foreach (var item in category.Cards)
+                    {
+                        cardNum = cardNum + 1;
+                        if (item.ItemMissing == true)
                         {
-                            cardNum = cardNum + 1;
-                            if (item.ItemMissing == true)
-                            {
-                                <div class="WokPicker_card">
-                                    <div class="WokPicker_Img">
-                                    </div>
-                                    <p class="WokPicker_card_title">
-                                        Hiányzik
-                                    </p>
-
+                            <div class="WokPicker_card">
+                                <div class="WokPicker_Img">
                                 </div>
-                            }
-                            else
-                            {
-                                <div id="@("WokPicker_Card_"  + (category.Id * 100 + cardNum).ToString())" class="WokPicker_card @(item.Disable ? "disabled" : "")">
-                                    <div class="WokPicker_Img" >
-                                        <img src=@item.Item.ImageFileSmall alt="teszt">
-                                    </div>
-                                    <p class="WokPicker_card_title">
-                                        @if (item.NameOverride)
-                                        {
-                                            @item.NameOverrideText
-                                        }
-                                        else
-                                        {
-                                            @item.TranslatedName
-                                        }
-                                    </p>
-                                    @{
-                                        var bvinName = "Sections[" + categoryNum + "].Cards[" + (cardNum - 1) + "].Bvin";
-                                        var selectedName = "Sections[" + categoryNum + "].Cards[" + (cardNum - 1) + "].Selected";
-                                    }
-                                    @Html.Hidden(bvinName, Model.ElementAt(categoryNum).Cards.ElementAt(cardNum - 1).Bvin)
-                                    @Html.Hidden(selectedName, Model.ElementAt(categoryNum).Cards.ElementAt(cardNum - 1).Selected, new { @class = "hiddenSelectorModel" })
+                                <p class="WokPicker_card_title">
+                                    Hiányzik
+                                </p>
 
-                                </div>
-                            }
-
-
+                            </div>
                         }
-                    </div>
+                        else
+                        {
+                            
+                                var bvinName = "Sections[" + categoryNum + "].Cards[" + (cardNum - 1) + "].Bvin";
+                                var selectedName = "Sections[" + categoryNum + "].Cards[" + (cardNum - 1) + "].Selected";
+                                var cardName = "Sections[" + categoryNum + "].Cards[" + (cardNum - 1) + "].TranslatedName";
+                            
+                            <div id="@("WokPicker_Card_"  + (category.Id * 100 + cardNum).ToString())" class="WokPicker_card @(item.Disable ? "disabled" : "")">
+                                <div class="WokPicker_Img">
+                                    <img src=@item.Item.ImageFileSmall alt="teszt">
+                                </div>
+                                <p class="WokPicker_card_title">
+                                    @if (item.NameOverride)
+                                    {
+                                        @item.NameOverrideText
+                                        @Html.Hidden(cardName, Model.ElementAt(categoryNum).Cards.ElementAt(cardNum - 1).NameOverrideText)
+                                    }
+                                    else
+                                    {
+                                        @item.TranslatedName
+                                        @Html.Hidden(cardName, Model.ElementAt(categoryNum).Cards.ElementAt(cardNum - 1).TranslatedName)
+                                    }
+                                </p>
+                                @Html.Hidden(bvinName, Model.ElementAt(categoryNum).Cards.ElementAt(cardNum - 1).Bvin)
+                                @Html.Hidden(selectedName, Model.ElementAt(categoryNum).Cards.ElementAt(cardNum - 1).Selected, new { @class = "hiddenSelectorModel" })
+
+                            </div>
+                        }
+
+
+                    }
+                </div>
                 </div>
                 categoryNum = categoryNum + 1;
             }

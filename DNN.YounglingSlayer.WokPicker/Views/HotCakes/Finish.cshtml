@@ -1,0 +1,29 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<IEnumerable<DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models.Card>>
+
+@using System.Text.RegularExpressions
+@using DotNetNuke.Web.Mvc.Helpers
+@using System.Linq
+@using Dnn.Modules.Console
+
+
+<div id="Items-@Dnn.ModuleContext.ModuleId">
+
+    <h1>
+        vége
+    </h1>
+    <h2>
+        juhé
+    </h2>
+
+    @foreach (var item in Model) {
+        <p>
+            @item.TranslatedName
+        </p>
+    }
+
+
+    <a class="btn btn-primary" href=@Url.Action("WokPicker", "Hotcakes")>Indítás</a>
+    <a class="btn btn-secondary" href=@Url.Action("Index", "Hotcakes")>Új Wok készítése</a>
+
+</div>
+

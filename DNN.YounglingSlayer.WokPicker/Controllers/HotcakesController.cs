@@ -159,23 +159,23 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
         public ActionResult WokPicker(IEnumerable<Section> Sections)
         {
 
-            List<string> teszt = new List<string>();
+            List<Card> selected = new List<Card>();
 
             foreach (var section in Sections)
             {
-                //foreach (var card in section.Cards)
-                //{
-                //    if(card.Selected == true)
-                //    {
-                //        teszt.Add(card.TranslatedName);
-                //    }
-                //}
+                foreach (var card in section.Cards)
+                {
+                    if (card.Selected)
+                    {
+                        selected.Add(card);
+                    }
+                }
             }
 
 
 
 
-            return  RedirectToDefaultRoute();
+            return View("Finish",selected);
         }
 
 
