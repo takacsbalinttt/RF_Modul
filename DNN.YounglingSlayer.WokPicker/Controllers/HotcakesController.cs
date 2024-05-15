@@ -156,7 +156,6 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
 
         public ActionResult WokPicker(IEnumerable<Section> Sections)
         {
-            System.Diagnostics.Debugger.Launch();
 
             List<Card> selected = new List<Card>();
 
