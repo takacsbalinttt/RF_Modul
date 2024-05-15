@@ -46,13 +46,13 @@
                         }
                         else
                         {
-                            
-                                var bvinName = "Sections[" + categoryNum + "].Cards[" + (cardNum - 1) + "].Bvin";
-                                var selectedName = "Sections[" + categoryNum + "].Cards[" + (cardNum - 1) + "].Selected";
-                                var cardName = "Sections[" + categoryNum + "].Cards[" + (cardNum - 1) + "].TranslatedName";
-                                var priceName = "Sections[" + categoryNum + "].Cards[" + (cardNum - 1) + "].Item.SitePrice";
-                                var spicyName = "Sections[" + categoryNum + "].Cards[" + (cardNum - 1) + "].Spicy";
-                                var imagefileName = "Sections[" + categoryNum + "].Cards[" + (cardNum - 1) + "].Item.ImageFileSmall";
+                                var cardIndex = "Sections[" + categoryNum + "].Cards[" + (cardNum - 1) + "]";
+                                var bvinName = cardIndex + ".Bvin";
+                                var selectedName = cardIndex + ".Selected";
+                                var cardName = cardIndex + ".TranslatedName";
+                                var priceName = cardIndex + ".Item.SitePrice";
+                                var spicyName = cardIndex + ".Spicy";
+                                var imagefileName = cardIndex + ".Item.ImageFileSmall";
 
                             
                             <div id="@("WokPicker_Card_"  + (category.Id * 100 + cardNum).ToString())" class="WokPicker_card @(item.Disable ? "disabled" : "")">
