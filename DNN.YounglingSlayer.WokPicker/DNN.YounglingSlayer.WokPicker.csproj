@@ -123,6 +123,7 @@
     <Compile Include="Components\FeatureController.cs" />
     <Compile Include="Components\HotcakesComponent.cs" />
     <Compile Include="Components\ItemManager.cs" />
+    <Compile Include="Components\ProductInventoryComponent.cs" />
     <Compile Include="Components\ProductTranslationsComponent.cs" />
     <Compile Include="Controllers\HotcakesController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
