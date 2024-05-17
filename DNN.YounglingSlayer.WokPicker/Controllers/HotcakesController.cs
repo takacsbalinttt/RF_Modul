@@ -139,6 +139,10 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
                 {
                     card.Item.ImageFileSmall = product_folder + card.Item.ImageFileSmall;
                 }
+                if (card.IsInStock == false)
+                {
+                    card.Disable = true;
+                }
 
                 return card;
 
