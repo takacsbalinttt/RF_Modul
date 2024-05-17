@@ -86,6 +86,11 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
 
         public bool ItemMissing { get; set; }
 
+        public bool IsInStock { get; set; }
+        
+        public int Stock { get; set; }  
+
+        public bool LowStockMode { get; set; }  
 
         public bool Selected { get; set; }
 

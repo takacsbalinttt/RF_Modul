@@ -126,6 +126,9 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
                 card.Disable = settings.GetValueOrDefault<bool>(setting_key + "Disable", false);
                 card.Spicy = settings.GetValueOrDefault<bool>(setting_key + "Spicy", false);
                 card.TranslatedName = ProductTranslationsManager.Instance.TranslateNameByProductID(card.Bvin, culture);
+                card.Stock = ProductInventoryManager.Instance.GetProductInventory(card.Bvin);
+                card.IsInStock = ProductInventoryManager.Instance.ProductIsInStock(card.Bvin);
+                card.LowStockMode = ProductInventoryManager.Instance.ProductLowStock(card.Bvin);
 
                 if (card.ImageOverride)
                 {
