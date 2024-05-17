@@ -160,17 +160,21 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
 
             foreach (var section in Sections)
             {
-                foreach (var card in section.Cards)
+                if (section.Cards == null)
                 {
-                    if (card.Selected)
+                    continue;
+                }
+                else
+                {
+                    foreach (var card in section.Cards)
                     {
-                        selected.Add(card);
+                        if (card.Selected)
+                        {
+                            selected.Add(card);
+                        }
                     }
                 }
             }
-
-
-
 
             return View("Finish",selected);
         }
