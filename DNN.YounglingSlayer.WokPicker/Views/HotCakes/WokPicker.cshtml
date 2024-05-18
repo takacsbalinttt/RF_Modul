@@ -56,6 +56,7 @@
                             var priceName = cardIndex + ".Item.SitePrice";
                             var spicyName = cardIndex + ".Spicy";
                             var imagefileName = cardIndex + ".Item.ImageFileSmall";
+                            var SKUName = cardIndex + ".Item.SKU";
 
 
 
@@ -81,6 +82,7 @@
                                 @Html.Hidden(selectedName, Model.ElementAt(categoryNum).Cards.ElementAt(cardNum - 1).Selected, new { @class = "hiddenSelectorModel" })
                                 @Html.Hidden(spicyName, Model.ElementAt(categoryNum).Cards.ElementAt(cardNum - 1).Spicy)
                                 @Html.Hidden(imagefileName, Model.ElementAt(categoryNum).Cards.ElementAt(cardNum - 1).Item.ImageFileSmall)
+                                @Html.Hidden(SKUName, Model.ElementAt(categoryNum).Cards.ElementAt(cardNum - 1).Item.SKU)
 
                             </div>
                         }
