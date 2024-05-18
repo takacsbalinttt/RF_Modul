@@ -176,12 +176,16 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             var settings = this.ActiveModule.ModuleSettings;
             var hccApp = HotcakesApplication.Current;
             string helperSku = settings.GetValueOrDefault("WokPicker_HelperSKU", "1000");
-            int finalprice = 0;
+            int finalPrice = 0;
 
             Order cart = hccApp.OrderServices.EnsureShoppingCart();
             
             var product = hccApp.CatalogServices.Products.FindBySku(helperSku);
-
+            
+            if(helperSku == null)
+            {
+                return View("NoSettings");
+            }
 
             List<Card> selected = new List<Card>();
 
