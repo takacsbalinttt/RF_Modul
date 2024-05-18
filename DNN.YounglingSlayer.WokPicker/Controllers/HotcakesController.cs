@@ -20,6 +20,7 @@ using Hotcakes.Commerce.Urls;
 using Hotcakes.Modules;
 using Hotcakes.Web;
 using Hotcakes.Commerce;
+using System.Reflection;
 
 
 namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
@@ -171,8 +172,8 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
         {
 
             System.Diagnostics.Debugger.Launch();
-           
-            
+
+            string devID = "YounglingSlayer"; 
             var settings = this.ActiveModule.ModuleSettings;
             var hccApp = HotcakesApplication.Current;
             string helperSku = settings.GetValueOrDefault("WokPicker_HelperSKU", "1000");
@@ -182,7 +183,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             
             var product = hccApp.CatalogServices.Products.FindBySku(helperSku);
             
-            if(helperSku == null)
+            if(helperSku == null || product == null)
             {
                 return View("NoSettings");
             }
@@ -191,17 +192,54 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
 
             foreach (var section in Sections)
             {
-                if (section.Cards == null)
+                if (section.Cards != null)
                 {
-                    continue;
-                }
-                else
-                {
-                    foreach (var card in section.Cards)
+                    if (section.MultiSelect)
                     {
-                        if (card.Selected)
+
+                        // MULTISELECT LOGIKA
+
+                        string propertyValue = string.Empty;
+
+
+                        foreach (var card in section.Cards)
                         {
-                            selected.Add(card);
+                            if (card.Selected)
+                            {
+                                if (propertyValue == string.Empty)
+                                {
+                                    propertyValue = card.TranslatedName;
+                                }
+                                else
+                                {
+                                    propertyValue += ", " + card.TranslatedName;
+                                }
+                                selected.Add(card);
+                            }
+                        }
+                        product.CustomProperties.Add(devID, section.PropertyName, propertyValue);
+
+                    }
+                    else
+                    {
+                        // SINGLESELECT LOGIKA
+                        foreach (var card in section.Cards)
+                        {
+                            if (card.Selected)
+                            {
+                                selected.Add(card);
+                                product.CustomProperties.Add(devID, section.PropertyName, card.TranslatedName);
+
+                                /*
+                                if(product.CustomPropertyExists(devID, section.PropertyName))
+                                {
+                                    product.CustomProperties.SetProperty(devID, section.PropertyName, card.TranslatedName);
+                                }
+                                else
+                                {
+
+                                }*/
+                            }
                         }
                     }
                 }
