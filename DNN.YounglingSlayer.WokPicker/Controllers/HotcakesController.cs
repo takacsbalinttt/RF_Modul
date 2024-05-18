@@ -180,13 +180,11 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             string helperSku = settings.GetValueOrDefault("WokPicker_HelperSKU", "1000");
             float finalPrice = 0;
 
+            string teszt = "389";
+
             Order cart = hccApp.OrderServices.EnsureShoppingCart();
             
             var product = hccApp.CatalogServices.Products.FindBySku(helperSku);
-
-            LineItem productFinal = product.ConvertToLineItem(hccApp, 1);
-
-
 
             if (helperSku == null || product == null)
             {
@@ -205,13 +203,12 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
                         // MULTISELECT LOGIKA
 
                         string propertyValue = string.Empty;
-                        OptionItem optionItem = new OptionItem();
-                        Option option = new Option();
 
                         foreach (var card in section.Cards)
                         {
                             if (card.Selected)
                             {
+                                BundledProductAdv subProduct = new BundledProductAdv(); 
                                 if (propertyValue == string.Empty)
                                 {
                                     propertyValue = card.TranslatedName;
@@ -221,17 +218,14 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
                                     propertyValue += ", " + card.TranslatedName;
                                 }
                                 selected.Add(card);
+                                subProduct.BundledProduct = hccApp.CatalogServices.Products.FindBySku(card.Item.SKU.Trim());
+                                subProduct.Quantity = 1;
+                                product.BundledProducts.Add(subProduct);
                                 finalPrice += card.Item.SitePrice;
                             }
                         }
 
-                        optionItem.Name = propertyValue;
-                        option.Name = section.PropertyName;
-
                         product.CustomProperties.Add(devID, section.PropertyName, propertyValue);
-                        productFinal.CustomProperties.Add(devID, section.PropertyName, propertyValue);
-                        option.AddItem(optionItem);
-                        product.Options.Add(option);
 
                     }
                     else
@@ -241,17 +235,13 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
                         {
                             if (card.Selected)
                             {
-                                OptionItem optionItem = new OptionItem();
-                                Option option = new Option();
-                                OptionSelection optionSelection = new OptionSelection();
-                                optionItem.Name = card.TranslatedName;
-                                option.Name = section.PropertyName;
-                                option.AddItem(optionItem);
-                                product.Options.Add(option);
-
+                                BundledProductAdv subProduct = new BundledProductAdv();
+                                subProduct.BundledProduct = hccApp.CatalogServices.Products.FindBySku(card.Item.SKU.Trim());
+                                subProduct.Quantity = 1;
+                                product.BundledProducts.Add(subProduct);
                                 selected.Add(card);
                                 product.CustomProperties.Add(devID, section.PropertyName, card.TranslatedName);
-                                productFinal.CustomProperties.Add(devID, section.PropertyName, card.TranslatedName);
+                                finalPrice += card.Item.SitePrice;
                             }
                         }
                     }
@@ -259,7 +249,13 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             }
 
 
-            hccApp.AddToOrderWithCalculateAndSave(cart, productFinal);
+
+            LineItem li = product.ConvertToLineItem(hccApp, 1, new OptionSelections(), Convert.ToDecimal(finalPrice));
+
+
+
+            //productFinal.BasePricePerItem = Convert.ToInt64(finalPrice);
+            hccApp.AddToOrderWithCalculateAndSave(cart, li);
 
             return View("Finish",selected);
         }
