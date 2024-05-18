@@ -254,7 +254,6 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
 
 
 
-            //productFinal.BasePricePerItem = Convert.ToInt64(finalPrice);
             hccApp.AddToOrderWithCalculateAndSave(cart, li);
 
             return View("Finish",selected);
