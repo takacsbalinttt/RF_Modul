@@ -181,9 +181,9 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
 
             Order cart = hccApp.OrderServices.EnsureShoppingCart();
             
-            var product = hccApp.CatalogServices.Products.FindBySku(helperSku);
+            var customProduct = hccApp.CatalogServices.Products.FindBySku(helperSku);
 
-            if (helperSku == null || product == null)
+            if (helperSku == null || customProduct == null)
             {
                 return View("NoSettings");
             }
@@ -194,16 +194,17 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             {
                 if (section.Cards != null)
                 {
-
                         foreach (var card in section.Cards)
                         {
                             if (card.Selected)
                             {
                                 BundledProductAdv subProduct = new BundledProductAdv(); 
-                                selected.Add(card);
-                                subProduct.BundledProduct = hccApp.CatalogServices.Products.FindBySku(card.Item.SKU.Trim());
+                                selected.Add(card);                                
+                                Product product = hccApp.CatalogServices.Products.FindBySku(card.Item.SKU.Trim());
+                                product.ProductName = card.TranslatedName;
+                                subProduct.BundledProduct = product;
                                 subProduct.Quantity = 1;
-                                product.BundledProducts.Add(subProduct);
+                                customProduct.BundledProducts.Add(subProduct);
                                 finalPrice += card.Item.SitePrice;
                             }
                         }
@@ -212,7 +213,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             }
 
 
-            LineItem finalProduct = product.ConvertToLineItem(hccApp, 1, new OptionSelections(), Convert.ToDecimal(finalPrice));
+            LineItem finalProduct = customProduct.ConvertToLineItem(hccApp, 1, new OptionSelections(), Convert.ToDecimal(finalPrice));
 
 
 
