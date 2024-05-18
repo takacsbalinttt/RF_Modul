@@ -30,6 +30,8 @@
                     }
 
                 <div id="@("Section" + category.Id)" class="WokPicker_card_container  @(category.MultiSelect ? "MultiSelect" : "SingleSelect")">
+                    @Html.Hidden("Sections[" + category.Id + "].MultiSelect", Model.ElementAt(categoryNum).MultiSelect)
+                    @Html.Hidden("Sections[" + category.Id + "].PropertyName", Model.ElementAt(categoryNum).PropertyName)
                     @foreach (var item in category.Cards)
                     {
                         cardNum = cardNum + 1;
@@ -46,16 +48,16 @@
                         }
                         else
                         {
-                                var cardIndex = "Sections[" + categoryNum + "].Cards[" + (cardNum - 1) + "]";
-                                var bvinName = cardIndex + ".Bvin";
-                                var selectedName = cardIndex + ".Selected";
-                                var cardName = cardIndex + ".TranslatedName";
-                                var priceName = cardIndex + ".Item.SitePrice";
-                                var spicyName = cardIndex + ".Spicy";
-                                var imagefileName = cardIndex + ".Item.ImageFileSmall";
+                            var cardIndex = "Sections[" + categoryNum + "].Cards[" + (cardNum - 1) + "]";
+                            var bvinName = cardIndex + ".Bvin";
+                            var selectedName = cardIndex + ".Selected";
+                            var cardName = cardIndex + ".TranslatedName";
+                            var priceName = cardIndex + ".Item.SitePrice";
+                            var spicyName = cardIndex + ".Spicy";
+                            var imagefileName = cardIndex + ".Item.ImageFileSmall";
 
 
-                            
+
                             <div id="@("WokPicker_Card_"  + (category.Id * 100 + cardNum).ToString())" class="WokPicker_card @(item.Disable ? "disabled" : "")">
                                 <div class="WokPicker_Img">
                                     <img class="main" src=@item.Item.ImageFileSmall alt="teszt">

@@ -229,16 +229,6 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
                             {
                                 selected.Add(card);
                                 product.CustomProperties.Add(devID, section.PropertyName, card.TranslatedName);
-
-                                /*
-                                if(product.CustomPropertyExists(devID, section.PropertyName))
-                                {
-                                    product.CustomProperties.SetProperty(devID, section.PropertyName, card.TranslatedName);
-                                }
-                                else
-                                {
-
-                                }*/
                             }
                         }
                     }
