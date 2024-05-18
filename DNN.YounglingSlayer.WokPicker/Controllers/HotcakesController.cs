@@ -93,6 +93,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             section.CardCount = settings.GetValueOrDefault<int>(setting_key + "CardCount",0);
             section.MultiSelect = settings.GetValueOrDefault<bool>(setting_key + "MultiSelect",false);
             section.Hide = settings.GetValueOrDefault<bool>(setting_key + "Hide",false);
+            section.PropertyName = settings.GetValueOrDefault<string>(setting_key + "PropertyName",string.Empty);
 
             for (int i = 0; i < section.CardCount; i++)
             {

@@ -32,6 +32,7 @@
                 <div id="@("Section" + category.Id)" class="WokPicker_card_container  @(category.MultiSelect ? "MultiSelect" : "SingleSelect")">
                     @Html.Hidden("Sections[" + category.Id + "].MultiSelect", Model.ElementAt(categoryNum).MultiSelect)
                     @Html.Hidden("Sections[" + category.Id + "].PropertyName", Model.ElementAt(categoryNum).PropertyName)
+                    @Html.Hidden("Sections[" + category.Id + "].Name", Model.ElementAt(categoryNum).Name)
                     @foreach (var item in category.Cards)
                     {
                         cardNum = cardNum + 1;
