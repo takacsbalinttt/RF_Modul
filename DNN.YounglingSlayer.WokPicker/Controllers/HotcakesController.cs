@@ -174,13 +174,10 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
 
             System.Diagnostics.Debugger.Launch();
 
-            string devID = "hcc"; 
             var settings = this.ActiveModule.ModuleSettings;
             var hccApp = HotcakesApplication.Current;
             string helperSku = settings.GetValueOrDefault("WokPicker_HelperSKU", "1000");
             float finalPrice = 0;
-
-            string teszt = "389";
 
             Order cart = hccApp.OrderServices.EnsureShoppingCart();
             
@@ -197,26 +194,12 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             {
                 if (section.Cards != null)
                 {
-                    if (section.MultiSelect)
-                    {
-
-                        // MULTISELECT LOGIKA
-
-                        string propertyValue = string.Empty;
 
                         foreach (var card in section.Cards)
                         {
                             if (card.Selected)
                             {
                                 BundledProductAdv subProduct = new BundledProductAdv(); 
-                                if (propertyValue == string.Empty)
-                                {
-                                    propertyValue = card.TranslatedName;
-                                }
-                                else
-                                {
-                                    propertyValue += ", " + card.TranslatedName;
-                                }
                                 selected.Add(card);
                                 subProduct.BundledProduct = hccApp.CatalogServices.Products.FindBySku(card.Item.SKU.Trim());
                                 subProduct.Quantity = 1;
@@ -225,36 +208,15 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
                             }
                         }
 
-                        product.CustomProperties.Add(devID, section.PropertyName, propertyValue);
-
-                    }
-                    else
-                    {
-                        // SINGLESELECT LOGIKA
-                        foreach (var card in section.Cards)
-                        {
-                            if (card.Selected)
-                            {
-                                BundledProductAdv subProduct = new BundledProductAdv();
-                                subProduct.BundledProduct = hccApp.CatalogServices.Products.FindBySku(card.Item.SKU.Trim());
-                                subProduct.Quantity = 1;
-                                product.BundledProducts.Add(subProduct);
-                                selected.Add(card);
-                                product.CustomProperties.Add(devID, section.PropertyName, card.TranslatedName);
-                                finalPrice += card.Item.SitePrice;
-                            }
-                        }
-                    }
                 }
             }
 
 
-
-            LineItem li = product.ConvertToLineItem(hccApp, 1, new OptionSelections(), Convert.ToDecimal(finalPrice));
-
+            LineItem finalProduct = product.ConvertToLineItem(hccApp, 1, new OptionSelections(), Convert.ToDecimal(finalPrice));
 
 
-            hccApp.AddToOrderWithCalculateAndSave(cart, li);
+
+            hccApp.AddToOrderWithCalculateAndSave(cart, finalProduct);
 
             return View("Finish",selected);
         }
