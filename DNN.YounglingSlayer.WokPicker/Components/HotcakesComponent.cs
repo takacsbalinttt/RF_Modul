@@ -4,6 +4,7 @@ using DotNetNuke.Data;
 using DotNetNuke.Framework;
 using System.Collections.Generic;
 using System.Dynamic;
+using System.Linq;
 
 
 namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Components
@@ -13,6 +14,8 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Components
     {
         IEnumerable<HotCakes> ReadHotCakes();
         IEnumerable<HotCakes> SearchSKU(string SKU);
+
+        string GetBvinbySKU(string SKU);
 
         HotCakes GetBybvin(string bvin);
         
@@ -54,6 +57,19 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Components
                 product = rep.GetById(bvin);
             }
             return product;
+        }
+
+        public string GetBvinbySKU(string SKU)
+        {
+            string bvin;
+            HotCakes product;
+            using (IDataContext ctx = DataContext.Instance())
+            {
+                var rep = ctx.GetRepository<HotCakes>();
+                product = rep.Find("WHERE SKU = @0", SKU).First();
+                bvin = product.bvin;
+            }
+            return bvin.Trim().ToLower();
         }
 
 
