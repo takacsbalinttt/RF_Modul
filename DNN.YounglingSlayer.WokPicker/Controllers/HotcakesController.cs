@@ -13,13 +13,13 @@ using System.Linq;
 using System.Net.Configuration;
 using System.Runtime.InteropServices;
 using System.Web.Mvc;
-using Hotcakes.Commerce;
 using Hotcakes.Commerce.Catalog;
 using Hotcakes.Commerce.Extensions;
 using Hotcakes.Commerce.Orders;
 using Hotcakes.Commerce.Urls;
 using Hotcakes.Modules;
 using Hotcakes.Web;
+using Hotcakes.Commerce;
 
 
 namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
@@ -170,6 +170,19 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
         public ActionResult WokPicker(IEnumerable<Section> Sections)
         {
 
+            System.Diagnostics.Debugger.Launch();
+           
+            
+            var settings = this.ActiveModule.ModuleSettings;
+            var hccApp = HotcakesApplication.Current;
+            string helperSku = settings.GetValueOrDefault("WokPicker_HelperSKU", "1000");
+            int finalprice = 0;
+
+            Order cart = hccApp.OrderServices.EnsureShoppingCart();
+            
+            var product = hccApp.CatalogServices.Products.FindBySku(helperSku);
+
+
             List<Card> selected = new List<Card>();
 
             foreach (var section in Sections)
@@ -189,6 +202,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
                     }
                 }
             }
+
 
             return View("Finish",selected);
         }
