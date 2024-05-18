@@ -54,6 +54,18 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\bin\DotNetNuke.Web.Mvc.dll</HintPath>
     </Reference>
+	<Reference Include="Hotcakes.Commerce">
+		<SpecificVersion>False</SpecificVersion>
+		<HintPath>..\..\..\bin\Hotcakes.Commerce.dll</HintPath>
+	</Reference>
+	  <Reference Include="Hotcakes.Web">
+		  <SpecificVersion>False</SpecificVersion>
+		  <HintPath>..\..\..\bin\Hotcakes.Web.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Hotcakes.Modules">
+		  <SpecificVersion>False</SpecificVersion>
+		  <HintPath>..\..\..\bin\Hotcakes.Modules.dll</HintPath>
+	  </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
