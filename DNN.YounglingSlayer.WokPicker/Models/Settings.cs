@@ -40,5 +40,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
 
         public int NumberOfSections { get; set; }
 
+        public string HelperBvin { get; set; }  
+
     }
 }

@@ -38,6 +38,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             var card1 = new Models.Card();
             settings.MultiSelect = config.GetValueOrDefault("WokPicker_MultiSelect", false);
             settings.NumberOfSections = config.GetValueOrDefault("WokPicker_NumberOfSections", 1);
+            settings.HelperBvin = config.GetValueOrDefault("WokPicker_HelperBvin", "nincs");
 
             // TESZT VÁLTOZÓ
             ViewBag.section1 = 0;
@@ -114,6 +115,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
         {
             ModuleContext.Configuration.ModuleSettings["WokPicker_MultiSelect"] = settings.MultiSelect.ToString();
             ModuleContext.Configuration.ModuleSettings["WokPicker_NumberOfSections"] = settings.NumberOfSections.ToString();
+            ModuleContext.Configuration.ModuleSettings["WokPicker_HelperBvin"] = settings.HelperBvin.ToString();
            
             for (int i = 0; i < settings.NumberOfItems; i++)
             {
