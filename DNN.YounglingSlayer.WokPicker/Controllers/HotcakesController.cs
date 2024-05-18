@@ -172,7 +172,6 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
         public ActionResult WokPicker(IEnumerable<Section> Sections)
         {
 
-            System.Diagnostics.Debugger.Launch();
 
             var settings = this.ActiveModule.ModuleSettings;
             var hccApp = HotcakesApplication.Current;
