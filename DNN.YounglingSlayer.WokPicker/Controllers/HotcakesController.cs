@@ -13,13 +13,13 @@ using System.Linq;
 using System.Net.Configuration;
 using System.Runtime.InteropServices;
 using System.Web.Mvc;
+using Hotcakes.Commerce;
 using Hotcakes.Commerce.Catalog;
 using Hotcakes.Commerce.Extensions;
 using Hotcakes.Commerce.Orders;
 using Hotcakes.Commerce.Urls;
 using Hotcakes.Modules;
 using Hotcakes.Web;
-using Hotcakes.Commerce;
 using System.Reflection;
 
 
@@ -174,17 +174,21 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
 
             System.Diagnostics.Debugger.Launch();
 
-            string devID = "YounglingSlayer"; 
+            string devID = "hcc"; 
             var settings = this.ActiveModule.ModuleSettings;
             var hccApp = HotcakesApplication.Current;
             string helperSku = settings.GetValueOrDefault("WokPicker_HelperSKU", "1000");
-            int finalPrice = 0;
+            float finalPrice = 0;
 
             Order cart = hccApp.OrderServices.EnsureShoppingCart();
             
             var product = hccApp.CatalogServices.Products.FindBySku(helperSku);
-            
-            if(helperSku == null || product == null)
+
+            LineItem productFinal = product.ConvertToLineItem(hccApp, 1);
+
+
+
+            if (helperSku == null || product == null)
             {
                 return View("NoSettings");
             }
@@ -201,7 +205,8 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
                         // MULTISELECT LOGIKA
 
                         string propertyValue = string.Empty;
-
+                        OptionItem optionItem = new OptionItem();
+                        Option option = new Option();
 
                         foreach (var card in section.Cards)
                         {
@@ -216,9 +221,17 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
                                     propertyValue += ", " + card.TranslatedName;
                                 }
                                 selected.Add(card);
+                                finalPrice += card.Item.SitePrice;
                             }
                         }
+
+                        optionItem.Name = propertyValue;
+                        option.Name = section.PropertyName;
+
                         product.CustomProperties.Add(devID, section.PropertyName, propertyValue);
+                        productFinal.CustomProperties.Add(devID, section.PropertyName, propertyValue);
+                        option.AddItem(optionItem);
+                        product.Options.Add(option);
 
                     }
                     else
@@ -228,14 +241,25 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
                         {
                             if (card.Selected)
                             {
+                                OptionItem optionItem = new OptionItem();
+                                Option option = new Option();
+                                OptionSelection optionSelection = new OptionSelection();
+                                optionItem.Name = card.TranslatedName;
+                                option.Name = section.PropertyName;
+                                option.AddItem(optionItem);
+                                product.Options.Add(option);
+
                                 selected.Add(card);
                                 product.CustomProperties.Add(devID, section.PropertyName, card.TranslatedName);
+                                productFinal.CustomProperties.Add(devID, section.PropertyName, card.TranslatedName);
                             }
                         }
                     }
                 }
             }
 
+
+            hccApp.AddToOrderWithCalculateAndSave(cart, productFinal);
 
             return View("Finish",selected);
         }
