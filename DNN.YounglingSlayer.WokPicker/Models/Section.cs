@@ -56,5 +56,10 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
 
         public List<Card> Cards { get; set; } = new List<Card>();
 
+        /// <summary>
+        /// Name of the Property to add to the item
+        /// </summary>
+        public string PropertyName { get; set; }
+
     }
 }

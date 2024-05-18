@@ -71,6 +71,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             section.CardCount = config.GetValueOrDefault("WokPicker_Section" + sectionId + "_CardCount", 0);
             section.MultiSelect = config.GetValueOrDefault("WokPicker_Section" + sectionId + "_MultiSelect", false);
             section.Hide = config.GetValueOrDefault("WokPicker_Section" + sectionId + "_Hide", false);
+            section.PropertyName = config.GetValueOrDefault("WokPicker_Section" + sectionId + "_PropertyName", "nincs");
 
 
 
@@ -139,6 +140,8 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             ModuleContext.Configuration.ModuleSettings["WokPicker_Section" + section.Id + "_CardCount"] = section.CardCount.ToString();
             ModuleContext.Configuration.ModuleSettings["WokPicker_Section" + section.Id + "_MultiSelect"] = section.MultiSelect.ToString();
             ModuleContext.Configuration.ModuleSettings["WokPicker_Section" + section.Id + "_Hide"] = section.Hide.ToString();
+            ModuleContext.Configuration.ModuleSettings["WokPicker_Section" + section.Id + "_PropertyName"] = section.PropertyName.ToString();
+
             
 
             return RedirectToAction("Settings");   
