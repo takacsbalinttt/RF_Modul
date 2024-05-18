@@ -23,12 +23,25 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
     {
 
 
-        [ModuleAction]
         public ActionResult Index()
         {
+            return View();
+        }
+        
+        [HttpGet]
+        public ActionResult Info()
+        {
+            return View();
+        }
+
+
+        [HttpGet]
+        public ActionResult WokPicker()
+        {
+
             var settings = this.ActiveModule.ModuleSettings;
 
-            if(settings.Count == 0)
+            if (settings.Count == 0)
             {
                 return View("NoSettings");
             }
@@ -39,7 +52,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             ViewBag.items = FindBVIN(bvin1);
             ViewBag.ProductName = ProductTranslationsManager.Instance.TranslateNameByProductID(bvin1, "en-US");
             */
-            var numberOfSections = settings.GetValueOrDefault<int>("WokPicker_NumberOfSections",1);
+            var numberOfSections = settings.GetValueOrDefault<int>("WokPicker_NumberOfSections", 1);
             ViewBag.numberOfSections = numberOfSections;
 
             List<Section> sections = new List<Section>();
@@ -52,11 +65,10 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
 
 
             return View(sections);
-        
-        
-        
-        
-        }
+        }   
+
+
+
 
 
 
@@ -114,6 +126,9 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
                 card.Disable = settings.GetValueOrDefault<bool>(setting_key + "Disable", false);
                 card.Spicy = settings.GetValueOrDefault<bool>(setting_key + "Spicy", false);
                 card.TranslatedName = ProductTranslationsManager.Instance.TranslateNameByProductID(card.Bvin, culture);
+                card.Stock = ProductInventoryManager.Instance.GetProductInventory(card.Bvin);
+                card.IsInStock = ProductInventoryManager.Instance.ProductIsInStock(card.Bvin);
+                card.LowStockMode = ProductInventoryManager.Instance.ProductLowStock(card.Bvin);
 
                 if (card.ImageOverride)
                 {
@@ -123,6 +138,10 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
                 else
                 {
                     card.Item.ImageFileSmall = product_folder + card.Item.ImageFileSmall;
+                }
+                if (card.IsInStock == false)
+                {
+                    card.Disable = true;
                 }
 
                 return card;
@@ -140,28 +159,31 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        [DotNetNuke.Web.Mvc.Framework.ActionFilters.ValidateAntiForgeryToken]
 
-        public ActionResult Index(List<Section> sections)
+        public ActionResult WokPicker(IEnumerable<Section> Sections)
         {
-            System.Diagnostics.Debugger.Launch();
-            List<string> teszt = new List<string>();
 
-            foreach (var section in sections)
+            List<Card> selected = new List<Card>();
+
+            foreach (var section in Sections)
             {
-                foreach (var card in section.Cards)
+                if (section.Cards == null)
                 {
-                    if(card.Selected == true)
+                    continue;
+                }
+                else
+                {
+                    foreach (var card in section.Cards)
                     {
-                        teszt.Add(card.TranslatedName);
+                        if (card.Selected)
+                        {
+                            selected.Add(card);
+                        }
                     }
                 }
             }
 
-
-
-
-            return  RedirectToDefaultRoute();
+            return View("Finish",selected);
         }
 
 

@@ -1,0 +1,43 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<IEnumerable<DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models.Card>>
+
+@using System.Text.RegularExpressions
+@using DotNetNuke.Web.Mvc.Helpers
+@using System.Linq
+@using Dnn.Modules.Console
+
+
+<div id="Items-@Dnn.ModuleContext.ModuleId" class="WokPicker_MainDiv">
+
+
+    <div class="WokPicker_card_TextPage finish">
+        <h1>
+            Kész az étel!
+        </h1>
+        <a class="btn btn-primary" href="#">Mehet a kosárba!</a>
+        <h2>
+            Az alábbi termékeket választottad:
+        </h2>
+    </div>
+
+    <div class="WokPicker_card_container">
+        @foreach (var item in Model)
+        {
+            <div class="WokPicker_card">
+                <div class="WokPicker_Img">
+                    <img class="main" src=@item.Item.ImageFileSmall alt="teszt">
+                    <img class="spicy" @(item.Spicy ? "" : "hidden") src="Content/spicy.png" alt="Alternate Text" />
+                </div>
+                <p class="WokPicker_card_title">
+                    @item.TranslatedName
+                </p>
+
+            </div>
+        }
+    </div>
+
+    <div class="WokPicker_navbuttons">
+        <a class="btn btn-primary" href=@Url.Action("WokPicker", "Hotcakes")>Indítás</a>
+        <a class="btn btn-secondary" href=@Url.Action("Index", "Hotcakes")>Új Wok készítése</a>
+    </div>
+
+</div>

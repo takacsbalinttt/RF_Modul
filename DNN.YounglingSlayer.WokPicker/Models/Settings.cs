@@ -21,9 +21,10 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
 
         public bool MultiSelect { get; set; }
 
-        public string Bvin1 { get; set; }   
         
         public int NumberOfItems { get; set; }
+
+        public bool proceed { get; set; }
 
 
 

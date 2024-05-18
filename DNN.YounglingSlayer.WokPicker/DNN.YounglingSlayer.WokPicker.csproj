@@ -123,9 +123,11 @@
     <Compile Include="Components\FeatureController.cs" />
     <Compile Include="Components\HotcakesComponent.cs" />
     <Compile Include="Components\ItemManager.cs" />
+    <Compile Include="Components\ProductInventoryComponent.cs" />
     <Compile Include="Components\ProductTranslationsComponent.cs" />
     <Compile Include="Controllers\HotcakesController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
+    <Compile Include="Models\ProductInventory.cs" />
     <Compile Include="Models\Section.cs" />
     <Compile Include="Models\HotCakes.cs" />
     <Compile Include="Models\Item.cs" />
@@ -136,6 +138,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_LocalResources\spicy.png" />
     <Content Include="Documentation\Documentation.css" />
     <Content Include="Documentation\Documentation.html" />
     <Content Include="License.txt" />
@@ -158,7 +161,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Providers\DataProviders\SqlDataProvider\0.3.2.SqlDataProvider" />
+    <Content Include="Providers\DataProviders\SqlDataProvider\0.5.0.SqlDataProvider" />
     <Content Include="Providers\DataProviders\SqlDataProvider\Uninstall.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
@@ -168,7 +171,9 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Content\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -179,6 +184,9 @@
     <Content Include="Views\HotCakes\NoSettings.cshtml" />
     <Content Include="Views\Settings\Section.cshtml" />
     <Content Include="Views\Settings\CardSettings.cshtml" />
+    <Content Include="Views\HotCakes\WokPicker.cshtml" />
+    <Content Include="Views\HotCakes\Info.cshtml" />
+    <Content Include="Views\HotCakes\Finish.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
