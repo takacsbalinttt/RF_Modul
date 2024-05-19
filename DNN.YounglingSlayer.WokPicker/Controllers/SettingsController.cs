@@ -129,6 +129,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             ModuleContext.Configuration.ModuleSettings["WokPicker_Section" + section.Id + "_Name"] = section.Name.ToString();
             ModuleContext.Configuration.ModuleSettings["WokPicker_Section" + section.Id + "_Description"] = section.Description.ToString();
             ModuleContext.Configuration.ModuleSettings["WokPicker_Section" + section.Id + "_CardCount"] = section.CardCount.ToString();
+            ModuleContext.Configuration.ModuleSettings["WokPicker_Section" + section.Id + "_MultiSelect"] = section.MultiSelect.ToString();
             ModuleContext.Configuration.ModuleSettings["WokPicker_Section" + section.Id + "_Hide"] = section.Hide.ToString();
             ModuleContext.Configuration.ModuleSettings["WokPicker_Section" + section.Id + "_PropertyName"] = section.PropertyName.ToString();
 
