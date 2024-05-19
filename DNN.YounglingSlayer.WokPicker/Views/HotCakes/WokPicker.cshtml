@@ -63,7 +63,7 @@
                             <div id="@("WokPicker_Card_"  + (category.Id * 100 + cardNum).ToString())" class="WokPicker_card @(item.Disable ? "disabled" : "")">
                                 <div class="WokPicker_Img">
                                     <img class="main" src=@item.Item.ImageFileSmall alt="teszt">
-                                    <img class="spicy" @(item.Spicy ? "" : "hidden") src="Content/spicy.png" alt="Alternate Text" />
+                                    <img class="spicy" @(item.Spicy ? "" : "hidden") src="/DesktopModules/MVC/DNN.YounglingSlayer.WokPicker/Images/spicy.png" />
                                 </div>
                                 <p class="WokPicker_card_title">
                                     @if (item.NameOverride)

@@ -57,7 +57,17 @@ div.WokPicker_Img {
     margin-right: 16px;
     user-select: none;
     pointer-events: none;
+    position: relative;
 }
+
+div.WokPicker_Img img.spicy{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 30%;
+}
+
+
 
 
 div.WokPicker_Img img.main {

@@ -61,7 +61,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.App_LocalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DNN.YounglingSlayer.WokPicker Item Basic Settings.
+        ///   Looks up a localized string similar to WokPicker Beállítások.
         /// </summary>
         public static string BasicSettings_Text {
             get {
