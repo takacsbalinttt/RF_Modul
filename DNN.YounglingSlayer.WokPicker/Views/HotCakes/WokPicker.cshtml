@@ -108,6 +108,8 @@
     document.addEventListener("DOMContentLoaded", function () {
         const singleSelects = document.querySelectorAll(".SingleSelect");
         const multiSelects = document.querySelectorAll(".MultiSelect");
+        const submitButton = document.getElementById("submit");
+
 
         singleSelects.forEach(container => {
             container.addEventListener("click", function (event) {
@@ -131,6 +133,7 @@
                 });
                 
             });
+            container.addEventListener("click", updateSubmitButton);
         });
 
 
@@ -154,8 +157,30 @@
                     });
                 }
             });
+            container.addEventListener("click", updateSubmitButton);
         });
+
+        function updateSubmitButton() {
+            let anySelected = false;
+            singleSelects.forEach(container => {
+                if (container.querySelector(".WokPicker_card.selected")) {
+                    anySelected = true;
+                    return;
+                }
+            });
+            if (!anySelected) {
+                multiSelects.forEach(container => {
+                    if (container.querySelector(".WokPicker_card.selected")) {
+                        anySelected = true;
+                        return;
+                    }
+                });
+            };
+            submitButton.disabled = !anySelected;
+        };
+        updateSubmitButton();
     });
+
 
 
 </script>
