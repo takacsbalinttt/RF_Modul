@@ -6,9 +6,9 @@
 <fieldset>
     <div class="dnnFormItem">
         <div class="dnnLabel" style="position: relative;">
-            @Html.LabelFor(m => Model.NumberOfSections, new { @class = "col-md-2 control-label" })
+            @Html.LabelFor(m => Model.ModuleTitle, "Modul címe", new { @class = "col-md-2 control-label"})
         </div>
-        @Html.TextBoxFor(m => Model.NumberOfSections)
+        @Html.TextBoxFor(m => Model.ModuleTitle)
     </div>
     <div class="dnnFormItem">
         <div class="dnnLabel" style="position: relative;">

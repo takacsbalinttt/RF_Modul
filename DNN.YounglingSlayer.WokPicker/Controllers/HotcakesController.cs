@@ -33,6 +33,12 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
 
         public ActionResult Index()
         {
+            var settings = this.ActiveModule.ModuleSettings;
+
+            var title = settings.GetValueOrDefault("WokPicker_ModuleTitle", "Modul címe");
+
+            ViewBag.Title = title;
+
             return View();
         }
         

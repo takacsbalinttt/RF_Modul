@@ -9,7 +9,6 @@
 ' DEALINGS IN THE SOFTWARE.
 ' 
 */
-using System;
 using System.Collections.Generic;
 
 namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
@@ -19,14 +18,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
         //Legacy Settings
 
 
-        public bool MultiSelect { get; set; }
-
-        
-        public int NumberOfItems { get; set; }
-
-        public bool proceed { get; set; }
-
-
+        public string ModuleTitle { get; set; }
 
         public List<Card> cards { get; set; } = new List<Card>();
 
