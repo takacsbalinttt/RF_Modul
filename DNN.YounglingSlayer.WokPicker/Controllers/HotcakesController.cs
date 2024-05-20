@@ -76,12 +76,11 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             List<Section> sections = new List<Section>();
             //System.Diagnostics.Debugger.Launch();
 
+
             for (int i = 0; i < numberOfSections; i++)
             {
                 sections.Add(MakeSection(i));
             }
-
-
             return View(sections);
         }   
 
@@ -116,7 +115,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
         {
             var settings = this.ActiveModule.ModuleSettings;
             var setting_key = "WokPicker_Section" + sectionId + "_Card" + cardId + "_";
-            var culture = ("en-US");
+            var culture = (ModuleContext.PortalSettings.CultureCode);
             Card card = new Card();
             card.Section = sectionId;
 
