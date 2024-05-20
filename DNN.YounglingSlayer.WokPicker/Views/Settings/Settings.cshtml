@@ -6,9 +6,15 @@
 <fieldset>
     <div class="dnnFormItem">
         <div class="dnnLabel" style="position: relative;">
-            @Html.LabelFor(m => Model.ModuleTitle, "Modul címe", new { @class = "col-md-2 control-label"})
+            @Html.LabelFor(m => Model.ModuleTitle, "Modul címe", new { @class = "col-md-2 control-label" })
         </div>
         @Html.TextBoxFor(m => Model.ModuleTitle)
+    </div>
+    <div class="dnnFormItem">
+        <div class="dnnLabel" style="position: relative;">
+            @Html.LabelFor(m => Model.ModuleInfo,"Modul leírása (HTML formátumban)", new { @class = "col-md-2 control-label" })
+        </div>
+        @Html.TextAreaFor(m => Model.ModuleInfo)
     </div>
     <div class="dnnFormItem">
         <div class="dnnLabel" style="position: relative;">
@@ -22,7 +28,6 @@
         </div>
         @Html.TextBoxFor(m => Model.HelperSKU)
     </div>
-
 
 
     @for (int i = 0; i < Model.NumberOfSections; i++)
