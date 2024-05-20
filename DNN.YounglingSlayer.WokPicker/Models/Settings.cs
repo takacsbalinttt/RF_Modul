@@ -20,6 +20,8 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
 
         public string ModuleTitle { get; set; }
 
+        public string ModuleInfo { get; set; }
+
         public List<Card> cards { get; set; } = new List<Card>();
 
 

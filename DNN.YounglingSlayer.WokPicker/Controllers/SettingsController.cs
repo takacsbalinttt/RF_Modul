@@ -40,6 +40,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             settings.NumberOfSections = config.GetValueOrDefault("WokPicker_NumberOfSections", 1);
             settings.HelperSKU = config.GetValueOrDefault("WokPicker_HelperSKU", "nincs");
             settings.ModuleTitle = config.GetValueOrDefault("WokPicker_ModuleTitle", "Modul cím");
+            settings.ModuleInfo = config.GetValueOrDefault("WokPicker_ModuleInfo", "Modul Tudnivalók szövege");
 
 
             List<string> section_names = new List<string>();    
@@ -112,6 +113,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             ModuleContext.Configuration.ModuleSettings["WokPicker_NumberOfSections"] = settings.NumberOfSections.ToString();
             ModuleContext.Configuration.ModuleSettings["WokPicker_HelperSKU"] = settings.HelperSKU.ToString();
             ModuleContext.Configuration.ModuleSettings["WokPicker_ModuleTitle"] = settings.ModuleTitle.ToString();
+            ModuleContext.Configuration.ModuleSettings["WokPicker_ModuleInfo"] = settings.ModuleInfo.ToString();
 
 
 

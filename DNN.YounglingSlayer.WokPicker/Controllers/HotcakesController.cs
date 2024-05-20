@@ -45,6 +45,10 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
         [HttpGet]
         public ActionResult Info()
         {
+            var settings = this.ActiveModule.ModuleSettings;
+            var info = settings.GetValueOrDefault("WokPicker_ModuleInfo", "Modul Tudnivalók szövege");
+            ViewBag.Info = info;
+
             return View();
         }
 
