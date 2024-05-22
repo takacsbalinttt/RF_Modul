@@ -15,10 +15,12 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
 {
     public class Settings
     {
-        //Legacy Settings
 
 
         public string ModuleTitle { get; set; }
+
+        public string ProductName { get; set; }
+
 
         public string ModuleInfo { get; set; }
 

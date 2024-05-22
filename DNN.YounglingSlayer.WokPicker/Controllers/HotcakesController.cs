@@ -191,6 +191,8 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             
             var customProduct = hccApp.CatalogServices.Products.FindBySku(helperSku);
 
+            ViewBag.ProductName = customProduct.ProductName;
+
             if (helperSku == null || customProduct == null)
             {
                 return View("NoSettings");
