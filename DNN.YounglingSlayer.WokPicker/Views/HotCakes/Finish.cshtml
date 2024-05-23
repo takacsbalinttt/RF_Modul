@@ -13,19 +13,15 @@
 
 <div id="Items-@Dnn.ModuleContext.ModuleId" class="WokPicker_MainDiv">
 
-
     <div class="WokPicker_card_TextPage finish">
-        <h1>
-            Kész a(z) @ViewBag.ProductName.ToLower().Trim()!
-        </h1>
-        <div class="WokPicker_navbuttons">
-            <a class="btn btn-primary" href="@Hotcakes.Commerce.Urls.HccUrlBuilder.RouteHccUrl(Hotcakes.Commerce.Urls.HccRoute.Cart)">Irány a kosár!</a>
-            <a class="btn btn-secondary" href=@Url.Action("Index", "Hotcakes")>Új @ViewBag.ProductName.ToLower().Trim() készítése</a>
-            <h2>
-                Az alábbi összetevőket választottad:
-            </h2>
-        </div>
-        </div>
+        <h2>
+            Az alábbi összetevőket választottad
+        </h2>
+        <h3>
+            A(z) @ViewBag.ProductName.ToLower().Trim() a kosaradba került!
+        </h3>
+    </div>
+
 
         <div class="WokPicker_card_container">
             @foreach (var item in Model)
@@ -42,5 +38,14 @@
                 </div>
             }
         </div>
+
+
+        <div class="WokPicker_card_TextPage finish">
+            <div class="WokPicker_navbuttons">
+                <a class="btn btn-primary" href="@Hotcakes.Commerce.Urls.HccUrlBuilder.RouteHccUrl(Hotcakes.Commerce.Urls.HccRoute.Cart)">Irány a kosár!</a>
+                <a class="btn btn-secondary" href=@Url.Action("Index", "Hotcakes")>Új @ViewBag.ProductName.ToLower().Trim() készítése</a>
+            </div>
+        </div>
+
 
     </div>
