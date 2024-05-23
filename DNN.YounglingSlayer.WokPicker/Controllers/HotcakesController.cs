@@ -13,6 +13,14 @@ using System.Linq;
 using System.Net.Configuration;
 using System.Runtime.InteropServices;
 using System.Web.Mvc;
+using Hotcakes.Commerce;
+using Hotcakes.Commerce.Catalog;
+using Hotcakes.Commerce.Extensions;
+using Hotcakes.Commerce.Orders;
+using Hotcakes.Commerce.Urls;
+using Hotcakes.Modules;
+using Hotcakes.Web;
+using System.Reflection;
 
 
 namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
@@ -25,12 +33,22 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
 
         public ActionResult Index()
         {
+            var settings = this.ActiveModule.ModuleSettings;
+
+            var title = settings.GetValueOrDefault("WokPicker_ModuleTitle", "Modul címe");
+
+            ViewBag.Title = title;
+
             return View();
         }
         
         [HttpGet]
         public ActionResult Info()
         {
+            var settings = this.ActiveModule.ModuleSettings;
+            var info = settings.GetValueOrDefault("WokPicker_ModuleInfo", "Modul Tudnivalók szövege");
+            ViewBag.Info = info;
+
             return View();
         }
 
@@ -58,12 +76,11 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             List<Section> sections = new List<Section>();
             //System.Diagnostics.Debugger.Launch();
 
+
             for (int i = 0; i < numberOfSections; i++)
             {
                 sections.Add(MakeSection(i));
             }
-
-
             return View(sections);
         }   
 
@@ -85,6 +102,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             section.CardCount = settings.GetValueOrDefault<int>(setting_key + "CardCount",0);
             section.MultiSelect = settings.GetValueOrDefault<bool>(setting_key + "MultiSelect",false);
             section.Hide = settings.GetValueOrDefault<bool>(setting_key + "Hide",false);
+            section.PropertyName = settings.GetValueOrDefault<string>(setting_key + "PropertyName",string.Empty);
 
             for (int i = 0; i < section.CardCount; i++)
             {
@@ -97,7 +115,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
         {
             var settings = this.ActiveModule.ModuleSettings;
             var setting_key = "WokPicker_Section" + sectionId + "_Card" + cardId + "_";
-            var culture = ("en-US");
+            var culture = (ModuleContext.PortalSettings.CultureCode);
             Card card = new Card();
             card.Section = sectionId;
 
@@ -163,28 +181,57 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
         public ActionResult WokPicker(IEnumerable<Section> Sections)
         {
 
+
+            var settings = this.ActiveModule.ModuleSettings;
+            var hccApp = HotcakesApplication.Current;
+            string helperSku = settings.GetValueOrDefault("WokPicker_HelperSKU", "1000");
+            float finalPrice = 0;
+
+            Order cart = hccApp.OrderServices.EnsureShoppingCart();
+            
+            var customProduct = hccApp.CatalogServices.Products.FindBySku(helperSku);
+
+            ViewBag.ProductName = customProduct.ProductName;
+
+            if (helperSku == null || customProduct == null)
+            {
+                return View("NoSettings");
+            }
+
             List<Card> selected = new List<Card>();
 
             foreach (var section in Sections)
             {
-                if (section.Cards == null)
+                if (section.Cards != null)
                 {
-                    continue;
-                }
-                else
-                {
-                    foreach (var card in section.Cards)
-                    {
-                        if (card.Selected)
+                        foreach (var card in section.Cards)
                         {
-                            selected.Add(card);
+                            if (card.Selected)
+                            {
+                                BundledProductAdv subProduct = new BundledProductAdv(); 
+                                selected.Add(card);                                
+                                Product product = hccApp.CatalogServices.Products.FindBySku(card.Item.SKU.Trim());
+                                product.ProductName = card.TranslatedName;
+                                subProduct.BundledProduct = product;
+                                subProduct.Quantity = 1;
+                                customProduct.BundledProducts.Add(subProduct);
+                                finalPrice += card.Item.SitePrice;
+                            }
                         }
-                    }
+
                 }
             }
 
+
+            LineItem finalProduct = customProduct.ConvertToLineItem(hccApp, 1, new OptionSelections(), Convert.ToDecimal(finalPrice));
+
+
+
+            hccApp.AddToOrderWithCalculateAndSave(cart, finalProduct);
+
             return View("Finish",selected);
         }
+
 
 
 

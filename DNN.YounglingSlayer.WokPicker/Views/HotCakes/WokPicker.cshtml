@@ -30,6 +30,9 @@
                     }
 
                 <div id="@("Section" + category.Id)" class="WokPicker_card_container  @(category.MultiSelect ? "MultiSelect" : "SingleSelect")">
+                    @Html.Hidden("Sections[" + category.Id + "].MultiSelect", Model.ElementAt(categoryNum).MultiSelect)
+                    @Html.Hidden("Sections[" + category.Id + "].PropertyName", Model.ElementAt(categoryNum).PropertyName)
+                    @Html.Hidden("Sections[" + category.Id + "].Name", Model.ElementAt(categoryNum).Name)
                     @foreach (var item in category.Cards)
                     {
                         cardNum = cardNum + 1;
@@ -46,20 +49,21 @@
                         }
                         else
                         {
-                                var cardIndex = "Sections[" + categoryNum + "].Cards[" + (cardNum - 1) + "]";
-                                var bvinName = cardIndex + ".Bvin";
-                                var selectedName = cardIndex + ".Selected";
-                                var cardName = cardIndex + ".TranslatedName";
-                                var priceName = cardIndex + ".Item.SitePrice";
-                                var spicyName = cardIndex + ".Spicy";
-                                var imagefileName = cardIndex + ".Item.ImageFileSmall";
+                            var cardIndex = "Sections[" + categoryNum + "].Cards[" + (cardNum - 1) + "]";
+                            var bvinName = cardIndex + ".Bvin";
+                            var selectedName = cardIndex + ".Selected";
+                            var cardName = cardIndex + ".TranslatedName";
+                            var priceName = cardIndex + ".Item.SitePrice";
+                            var spicyName = cardIndex + ".Spicy";
+                            var imagefileName = cardIndex + ".Item.ImageFileSmall";
+                            var SKUName = cardIndex + ".Item.SKU";
 
 
-                            
+
                             <div id="@("WokPicker_Card_"  + (category.Id * 100 + cardNum).ToString())" class="WokPicker_card @(item.Disable ? "disabled" : "")">
                                 <div class="WokPicker_Img">
                                     <img class="main" src=@item.Item.ImageFileSmall alt="teszt">
-                                    <img class="spicy" @(item.Spicy ? "" : "hidden") src="Content/spicy.png" alt="Alternate Text" />
+                                    <img class="spicy" @(item.Spicy ? "" : "hidden") src="/DesktopModules/MVC/DNN.YounglingSlayer.WokPicker/Images/spicy.png" />
                                 </div>
                                 <p class="WokPicker_card_title">
                                     @if (item.NameOverride)
@@ -78,6 +82,7 @@
                                 @Html.Hidden(selectedName, Model.ElementAt(categoryNum).Cards.ElementAt(cardNum - 1).Selected, new { @class = "hiddenSelectorModel" })
                                 @Html.Hidden(spicyName, Model.ElementAt(categoryNum).Cards.ElementAt(cardNum - 1).Spicy)
                                 @Html.Hidden(imagefileName, Model.ElementAt(categoryNum).Cards.ElementAt(cardNum - 1).Item.ImageFileSmall)
+                                @Html.Hidden(SKUName, Model.ElementAt(categoryNum).Cards.ElementAt(cardNum - 1).Item.SKU)
 
                             </div>
                         }
@@ -103,6 +108,8 @@
     document.addEventListener("DOMContentLoaded", function () {
         const singleSelects = document.querySelectorAll(".SingleSelect");
         const multiSelects = document.querySelectorAll(".MultiSelect");
+        const submitButton = document.getElementById("submit");
+
 
         singleSelects.forEach(container => {
             container.addEventListener("click", function (event) {
@@ -126,6 +133,7 @@
                 });
                 
             });
+            container.addEventListener("click", updateSubmitButton);
         });
 
 
@@ -149,8 +157,30 @@
                     });
                 }
             });
+            container.addEventListener("click", updateSubmitButton);
         });
+
+        function updateSubmitButton() {
+            let anySelected = false;
+            singleSelects.forEach(container => {
+                if (container.querySelector(".WokPicker_card.selected")) {
+                    anySelected = true;
+                    return;
+                }
+            });
+            if (!anySelected) {
+                multiSelects.forEach(container => {
+                    if (container.querySelector(".WokPicker_card.selected")) {
+                        anySelected = true;
+                        return;
+                    }
+                });
+            };
+            submitButton.disabled = !anySelected;
+        };
+        updateSubmitButton();
     });
+
 
 
 </script>

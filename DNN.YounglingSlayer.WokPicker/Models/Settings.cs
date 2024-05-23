@@ -9,24 +9,20 @@
 ' DEALINGS IN THE SOFTWARE.
 ' 
 */
-using System;
 using System.Collections.Generic;
 
 namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
 {
     public class Settings
     {
-        //Legacy Settings
 
 
-        public bool MultiSelect { get; set; }
+        public string ModuleTitle { get; set; }
 
-        
-        public int NumberOfItems { get; set; }
-
-        public bool proceed { get; set; }
+        public string ProductName { get; set; }
 
 
+        public string ModuleInfo { get; set; }
 
         public List<Card> cards { get; set; } = new List<Card>();
 
@@ -39,6 +35,8 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Models
         public List<Section> Sections { get; set; } = new List<Section>();
 
         public int NumberOfSections { get; set; }
+
+        public string HelperSKU { get; set; }  
 
     }
 }

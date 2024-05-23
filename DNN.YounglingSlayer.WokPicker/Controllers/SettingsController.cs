@@ -17,6 +17,7 @@ using DotNetNuke.Web.Mvc.Framework.Controllers;
 using System.Web.Mvc;
 using System.Collections.Generic;
 using DotNetNuke.Entities.Modules;
+using DotNetNuke.Common.Utilities;
 
 
 namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
@@ -36,15 +37,11 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
 
             var settings = new Models.Settings();
             var card1 = new Models.Card();
-            settings.MultiSelect = config.GetValueOrDefault("WokPicker_MultiSelect", false);
             settings.NumberOfSections = config.GetValueOrDefault("WokPicker_NumberOfSections", 1);
+            settings.HelperSKU = config.GetValueOrDefault("WokPicker_HelperSKU", "nincs");
+            settings.ModuleTitle = config.GetValueOrDefault("WokPicker_ModuleTitle", "Modul cím");
+            settings.ModuleInfo = config.GetValueOrDefault("WokPicker_ModuleInfo", "Modul Tudnivalók szövege");
 
-            // TESZT VÁLTOZÓ
-            ViewBag.section1 = 0;
-
-
-
-            
 
             List<string> section_names = new List<string>();    
             for (int i = 0; i <= settings.NumberOfSections; i++)
@@ -70,6 +67,7 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             section.CardCount = config.GetValueOrDefault("WokPicker_Section" + sectionId + "_CardCount", 0);
             section.MultiSelect = config.GetValueOrDefault("WokPicker_Section" + sectionId + "_MultiSelect", false);
             section.Hide = config.GetValueOrDefault("WokPicker_Section" + sectionId + "_Hide", false);
+            section.PropertyName = config.GetValueOrDefault("WokPicker_Section" + sectionId + "_PropertyName", "nincs");
 
 
 
@@ -112,13 +110,11 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
         [DotNetNuke.Web.Mvc.Framework.ActionFilters.ValidateAntiForgeryToken]
         public ActionResult Settings(Models.Settings settings)
         {
-            ModuleContext.Configuration.ModuleSettings["WokPicker_MultiSelect"] = settings.MultiSelect.ToString();
             ModuleContext.Configuration.ModuleSettings["WokPicker_NumberOfSections"] = settings.NumberOfSections.ToString();
-           
-            for (int i = 0; i < settings.NumberOfItems; i++)
-            {
-                ModuleContext.Configuration.ModuleSettings["WokPicker_Card" + (i + 1) + "_Bvin"] = settings.cards[i].Bvin.ToString();
-            }
+            ModuleContext.Configuration.ModuleSettings["WokPicker_HelperSKU"] = settings.HelperSKU.ToString();
+            ModuleContext.Configuration.ModuleSettings["WokPicker_ModuleTitle"] = settings.ModuleTitle.ToString();
+            ModuleContext.Configuration.ModuleSettings["WokPicker_ModuleInfo"] = settings.ModuleInfo.ToString();
+
 
 
             return RedirectToDefaultRoute();
@@ -137,6 +133,8 @@ namespace DNN.WokPickerDNN.YounglingSlayer.WokPicker.Controllers
             ModuleContext.Configuration.ModuleSettings["WokPicker_Section" + section.Id + "_CardCount"] = section.CardCount.ToString();
             ModuleContext.Configuration.ModuleSettings["WokPicker_Section" + section.Id + "_MultiSelect"] = section.MultiSelect.ToString();
             ModuleContext.Configuration.ModuleSettings["WokPicker_Section" + section.Id + "_Hide"] = section.Hide.ToString();
+            ModuleContext.Configuration.ModuleSettings["WokPicker_Section" + section.Id + "_PropertyName"] = section.PropertyName.ToString();
+
             
 
             return RedirectToAction("Settings");   

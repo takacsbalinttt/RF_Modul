@@ -30,6 +30,12 @@
     </div>
     <div class="dnnFormItem">
         <div class="dnnLabel" style="position: relative;">
+            @Html.LabelFor(m => Model.PropertyName, new { @class = "col-md-2 control-label" })
+        </div>
+        @Html.TextBoxFor(m => Model.PropertyName)
+    </div>
+    <div class="dnnFormItem">
+        <div class="dnnLabel" style="position: relative;">
             @Html.LabelFor(m => Model.CardCount, new { @class = "col-md-2 control-label" })
         </div>
         @Html.TextBoxFor(m => Model.CardCount)

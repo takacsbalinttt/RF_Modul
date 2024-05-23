@@ -53,11 +53,20 @@ div.WokPicker_Img {
     border-radius: 16px;
     margin-top: 16px;
     margin-left: 16px;
-    margin-bottom: 16px;
     margin-right: 16px;
     user-select: none;
     pointer-events: none;
+    position: relative;
 }
+
+div.WokPicker_Img img.spicy{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 30%;
+}
+
+
 
 
 div.WokPicker_Img img.main {
@@ -69,6 +78,7 @@ div.WokPicker_Img img.main {
     border-radius: 16px;
     user-select: none;
     pointer-events: none;
+    aspect-ratio: 1/1;
 }
 
 p.WokPicker_card_title{
@@ -76,7 +86,7 @@ p.WokPicker_card_title{
     font-weight: 700;
     color: #fff;
     text-align: center;
-    margin: 0;
+    margin: auto 0;
 }
 
 

@@ -54,6 +54,18 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\bin\DotNetNuke.Web.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="Hotcakes.Commerce">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\Hotcakes.Commerce.dll</HintPath>
+    </Reference>
+    <Reference Include="Hotcakes.Web">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\Hotcakes.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Hotcakes.Modules">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\Hotcakes.Modules.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -138,7 +150,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_LocalResources\spicy.png" />
+    <EmbeddedResource Include="App_LocalResources\spicy.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Content Include="Images\spicy.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Documentation\Documentation.css" />
     <Content Include="Documentation\Documentation.html" />
     <Content Include="License.txt" />
@@ -161,7 +178,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Providers\DataProviders\SqlDataProvider\0.5.0.SqlDataProvider" />
+    <Content Include="Providers\DataProviders\SqlDataProvider\1.1.0.SqlDataProvider" />
     <Content Include="Providers\DataProviders\SqlDataProvider\Uninstall.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
@@ -171,9 +188,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Web.config">
       <SubType>Designer</SubType>

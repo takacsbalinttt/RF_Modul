@@ -6,35 +6,39 @@
 <fieldset>
     <div class="dnnFormItem">
         <div class="dnnLabel" style="position: relative;">
-            @Html.LabelFor(m => Model.MultiSelect, new { @class = "col-md-2 control-label" })
+            @Html.LabelFor(m => Model.ModuleTitle, "Modul címe", new { @class = "col-md-2 control-label" })
         </div>
-        @Html.CheckBoxFor(m => Model.MultiSelect)
+        @Html.TextBoxFor(m => Model.ModuleTitle)
     </div>
     <div class="dnnFormItem">
         <div class="dnnLabel" style="position: relative;">
-            @Html.LabelFor(m => Model.NumberOfItems, new { @class = "col-md-2 control-label" })
+            @Html.LabelFor(m => Model.ModuleInfo,"Modul leírása (HTML formátumban)", new { @class = "col-md-2 control-label" })
         </div>
-        @Html.TextBoxFor(m => Model.NumberOfItems)
+        @Html.TextAreaFor(m => Model.ModuleInfo)
     </div>
-
     <div class="dnnFormItem">
         <div class="dnnLabel" style="position: relative;">
             @Html.LabelFor(m => Model.NumberOfSections, new { @class = "col-md-2 control-label" })
         </div>
         @Html.TextBoxFor(m => Model.NumberOfSections)
     </div>
-
+    <div class="dnnFormItem">
+        <div class="dnnLabel" style="position: relative;">
+            @Html.LabelFor(m => Model.HelperSKU, new { @class = "col-md-2 control-label" })
+        </div>
+        @Html.TextBoxFor(m => Model.HelperSKU)
+    </div>
 
 
     @for (int i = 0; i < Model.NumberOfSections; i++)
     {
-     <div>
+        <div>
             <h2>@ViewBag.section_names[i]</h2>
             <div class="WokPicker_settings_link">
-                <a  href=@Url.Action("Section", "Settings", new {ctl = "Section", sectionId = i })> szerkesztés  @Dnn.LocalizeString("EditItem")</a>
-                
+                <a href=@Url.Action("Section", "Settings", new {ctl = "Section", sectionId = i })> szerkesztés  @Dnn.LocalizeString("EditItem")</a>
+
             </div>
-     </div>
+        </div>
     }
 
 
